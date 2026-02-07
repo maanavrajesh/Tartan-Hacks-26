@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisionXI</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a12; }
+    #canvas { display: block; width: 100%; height: 100%; }
+    #overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; z-index: 10;
+    }
+    #logo {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #0077b6, #00b4d8, #6a1b9a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      transform: scale(0.7);
+      filter: blur(12px);
+      text-align: center;
+    }
+    #tagline {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: clamp(14px, 2vw, 24px);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: #7c3aed;
+      opacity: 0;
+      text-align: center;
+      margin-top: 8px;
+    }
+    #overlay-inner { display: flex; flex-direction: column; align-items: center; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="overlay">
+    <div id="overlay-inner">
+      <div id="logo">VisionXI</div>
+      <div id="tagline">THE FUTURE OF FOOTBALL</div>
+    </div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
