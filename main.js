@@ -10,14 +10,14 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.2;
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x0a0a12, 0.025);
+scene.fog = new THREE.FogExp2(0x0b0714, 0.03);
 
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
 camera.position.set(0, 2, 10);
 camera.lookAt(0, 1, 0);
 
 // ─── COLORS ─────────────────────────────────────────────────
-const OCEAN      = new THREE.Color(0x0077b6);
+const OCEAN      = new THREE.Color(0x1a8fd1);
 const DEEP_PURPLE = new THREE.Color(0x6a1b9a);
 const DARK_VIOLET = new THREE.Color(0x4a148c);
 const NAVY_BLUE  = new THREE.Color(0x003f88);
@@ -30,18 +30,18 @@ const PALETTE = [
 ];
 
 // ─── LIGHTING ───────────────────────────────────────────────
-scene.add(new THREE.AmbientLight(0x334466, 0.6));
+scene.add(new THREE.AmbientLight(0x2b1b3a, 0.75));
 
 const key = new THREE.DirectionalLight(0xccddff, 1.8);
 key.position.set(5, 8, 6);
 key.castShadow = true;
 scene.add(key);
 
-const rim = new THREE.PointLight(0x7c3aed, 1.2, 30);
+const rim = new THREE.PointLight(0x6d28d9, 1.3, 30);
 rim.position.set(-4, 4, -4);
 scene.add(rim);
 
-const fill = new THREE.PointLight(0x00b4d8, 0.8, 25);
+const fill = new THREE.PointLight(0x4c1d95, 0.7, 25);
 fill.position.set(3, 1, 5);
 scene.add(fill);
 
@@ -207,10 +207,19 @@ function buildSoccerBall() {
       geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
       const midColor = colorA.clone().lerp(colorB, 0.5);
-      const mat = new THREE.MeshStandardMaterial({
+      const mat = new THREE.MeshPhysicalMaterial({
         vertexColors: true,
-        roughness: 0.3,
-        metalness: 0.15,
+        roughness: 0.05,
+        metalness: 0.0,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.02,
+        transmission: 0.85,
+        ior: 1.45,
+        thickness: 0.6,
+        transparent: true,
+        opacity: 0.9,
+        attenuationColor: midColor.clone().lerp(new THREE.Color(0xffffff), 0.5),
+        attenuationDistance: 2.0,
         emissive: midColor.clone().multiplyScalar(0.15),
       });
 
@@ -247,67 +256,6 @@ ballGroup.position.set(0, 1.5, 0);
 scene.add(ballGroup);
 
 // ═══════════════════════════════════════════════════════════
-//  SILHOUETTE LEG — built from primitives
-// ═══════════════════════════════════════════════════════════
-
-function buildLegSilhouette() {
-  const leg = new THREE.Group();
-  const mat = new THREE.MeshStandardMaterial({
-    color: 0xeef0ff,
-    roughness: 0.4,
-    metalness: 0.05,
-    emissive: 0xaabbee,
-    emissiveIntensity: 0.25,
-    transparent: true,
-    opacity: 1,
-    flatShading: true,
-  });
-
-  // 2.5D leg: thin boxes to read as 2D silhouette with depth cues
-  const DEPTH = 0.08;
-
-  // Hip pivot (top of leg)
-  const thighPivot = new THREE.Group();
-  thighPivot.position.y = 2.4;
-  leg.add(thighPivot);
-
-  // Thigh
-  const thigh = new THREE.Mesh(new THREE.BoxGeometry(0.45, 1.6, DEPTH), mat);
-  thigh.position.y = -0.8;
-  thighPivot.add(thigh);
-
-  // Knee pivot
-  const calfPivot = new THREE.Group();
-  calfPivot.position.y = -1.55;
-  thighPivot.add(calfPivot);
-
-  // Calf
-  const calf = new THREE.Mesh(new THREE.BoxGeometry(0.38, 1.4, DEPTH), mat);
-  calf.position.y = -0.7;
-  calfPivot.add(calf);
-
-  // Ankle pivot
-  const footPivot = new THREE.Group();
-  footPivot.position.y = -1.3;
-  calfPivot.add(footPivot);
-
-  // Foot
-  const foot = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.14, DEPTH), mat);
-  foot.position.set(0.05, -0.08, 0.12);
-  footPivot.add(foot);
-
-  return { leg, thighPivot, calfPivot, footPivot, material: mat };
-}
-
-const leg = buildLegSilhouette();
-// Position the leg in the upper half and let it extend beyond the top of the frame
-leg.leg.position.set(-10, 3.0, 2);
-leg.leg.scale.set(1.6, 1.6, 1.6);
-leg.leg.rotation.y = 0.3;
-leg.leg.visible = false;
-scene.add(leg.leg);
-
-// ═══════════════════════════════════════════════════════════
 //  ANIMATION TIMELINE
 // ═══════════════════════════════════════════════════════════
 
@@ -318,26 +266,11 @@ const state = { phase: 'intro', shattered: false, time: 0 };
 tl.to(ballGroup.rotation, { y: Math.PI * 2, duration: 3, ease: 'power1.inOut' }, 0);
 tl.to(camera.position, { x: 3, y: 2.5, z: 8, duration: 3, ease: 'power2.inOut' }, 0);
 
-// -- Phase 2: Leg enters from far left (2.5s–4.2s) --
-tl.call(() => { leg.leg.visible = true; }, null, 2.5);
-tl.to(leg.leg.position, { x: -2.2, duration: 1.7, ease: 'power2.inOut' }, 2.5);
-tl.to(leg.leg.rotation, { y: 0.1, duration: 1.7, ease: 'power2.inOut' }, 2.5);
-
-// Wind-up for kick
-tl.to(leg.thighPivot.rotation, { x: 0.65, duration: 0.45, ease: 'power2.inOut' }, 4.3);
-tl.to(leg.calfPivot.rotation, { x: -0.6, duration: 0.45, ease: 'power2.inOut' }, 4.3);
-tl.to(leg.footPivot.rotation, { x: 0.25, duration: 0.45, ease: 'power2.inOut' }, 4.3);
-
 // -- Phase 2b: Camera swings to side view (3s–4.5s) --
 tl.to(camera.position, { x: 5, y: 2, z: 6, duration: 1.5, ease: 'power2.inOut' }, 3);
 
 // -- Phase 3: Kick animation (4.6s–5.4s) --
-tl.to(leg.thighPivot.rotation, { x: -0.9, duration: 0.35, ease: 'power3.in' }, 4.6);
-tl.to(leg.calfPivot.rotation, { x: 0.2, duration: 0.35, ease: 'power3.in' }, 4.6);
-tl.to(leg.footPivot.rotation, { x: -0.15, duration: 0.35, ease: 'power3.in' }, 4.6);
-tl.to(leg.thighPivot.rotation, { x: -0.35, duration: 0.4, ease: 'power4.out' }, 4.95);
-tl.to(leg.calfPivot.rotation, { x: 0.35, duration: 0.4, ease: 'power4.out' }, 4.95);
-tl.to(leg.leg.rotation, { z: -0.12, duration: 0.6, ease: 'power2.inOut' }, 4.7);
+// (leg removed)
 
 // -- Phase 4: Ball shatter on contact (5.35s) --
 tl.call(() => {
@@ -370,7 +303,6 @@ tl.call(() => {
 
 // -- Phase 5: Camera pulls back, logo appears (6s–8s) --
 tl.to(camera.position, { x: 0, y: 3, z: 12, duration: 2, ease: 'power2.inOut' }, 5.8);
-tl.to(leg.material, { opacity: 0, duration: 1.2, ease: 'power2.out' }, 6.6);
 
 // Logo fade in
 tl.to('#logo', {
