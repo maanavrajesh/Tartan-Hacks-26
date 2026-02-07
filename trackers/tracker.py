@@ -19,6 +19,7 @@ from tqdm import tqdm
 class Tracker:
     def __init__(self, model_path):
         self.model = YOLO(model_path)
+<<<<<<< Updated upstream
         # Tune ByteTrack for more stable track IDs
         self.tracker = sv.ByteTrack(
             lost_track_buffer=60,        # Keep lost tracks for 60 frames (was 30)
@@ -26,6 +27,9 @@ class Tracker:
             minimum_matching_threshold=0.7,  # Lower IOU threshold for matching
             frame_rate=30                 # Assume 30 fps
         )
+=======
+        self.tracker = sv.ByteTrack()
+>>>>>>> Stashed changes
 
     def detect_frames(self, frames):
         """Run detection on all frames."""
@@ -39,20 +43,30 @@ class Tracker:
             detections.extend(detections_batch)
         return detections
 
+<<<<<<< Updated upstream
     def get_object_tracks(self, frames, read_from_stub=False, stub_path=None):
         """Get tracked objects across all frames."""
+=======
+
+    def get_object_tracks(self, frames, read_from_stub=False, stub_path=None):
+        """Get tracked objects across all frames using YOLO's built-in tracker."""
+>>>>>>> Stashed changes
         if read_from_stub and stub_path and os.path.exists(stub_path):
             with open(stub_path, 'rb') as f:
                 return pickle.load(f)
 
+<<<<<<< Updated upstream
         detections = self.detect_frames(frames)
 
+=======
+>>>>>>> Stashed changes
         tracks = {
             "players": [],
             "referees": [],
             "ball": []
         }
 
+<<<<<<< Updated upstream
         for frame_num, detection in enumerate(detections):
             cls_names = detection.names
             cls_names_inv = {v: k for k, v in cls_names.items()}
@@ -62,11 +76,18 @@ class Tracker:
 
             # Track objects
             detection_with_tracks = self.tracker.update_with_detections(detection_sv)
+=======
+        # Use YOLO's built-in tracking (BoT-SORT by default)
+        for frame_num, frame in tqdm(enumerate(frames), total=len(frames), desc="Tracking"):
+            # Use .track() for built-in tracking with persistent IDs
+            results = self.model.track(frame, conf=0.2, persist=True, verbose=False)
+>>>>>>> Stashed changes
 
             tracks["players"].append({})
             tracks["referees"].append({})
             tracks["ball"].append({})
 
+<<<<<<< Updated upstream
             for frame_detection in detection_with_tracks:
                 bbox = frame_detection[0].tolist()
                 cls_id = frame_detection[3]
@@ -90,6 +111,36 @@ class Tracker:
                     tracks["ball"][frame_num][1] = {"bbox": bbox}
 
         if stub_path:
+=======
+            if results and len(results) > 0:
+                result = results[0]
+                cls_names = result.names
+                cls_names_inv = {v: k for k, v in cls_names.items()}
+
+                if result.boxes is not None and result.boxes.id is not None:
+                    boxes = result.boxes.xyxy.cpu().numpy()
+                    class_ids = result.boxes.cls.cpu().numpy().astype(int)
+                    track_ids = result.boxes.id.cpu().numpy().astype(int)
+
+                    for bbox, cls_id, track_id in zip(boxes, class_ids, track_ids):
+                        bbox_list = bbox.tolist()
+
+                        # Support both custom model (player) and COCO model (person)
+                        player_cls = cls_names_inv.get('player', cls_names_inv.get('person', -1))
+                        if cls_id == player_cls:
+                            tracks["players"][frame_num][track_id] = {"bbox": bbox_list}
+
+                        if cls_id == cls_names_inv.get('referee', -1):
+                            tracks["referees"][frame_num][track_id] = {"bbox": bbox_list}
+
+                        # Support both custom model (ball) and COCO model (sports ball)
+                        ball_cls = cls_names_inv.get('ball', cls_names_inv.get('sports ball', -1))
+                        if cls_id == ball_cls:
+                            tracks["ball"][frame_num][track_id] = {"bbox": bbox_list}
+
+        if stub_path:
+            os.makedirs(os.path.dirname(stub_path), exist_ok=True)
+>>>>>>> Stashed changes
             with open(stub_path, 'wb') as f:
                 pickle.dump(tracks, f)
 
