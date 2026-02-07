@@ -1,0 +1,5 @@
+{"type":"session.started","sessionId":"S123","ts":0,"payload":{"mode":"player","playerLabel":"#7","videoSource":"upload"}}
+{"type":"vision.window","sessionId":"S123","ts":1,"payload":{"t0":0,"t1":1,"json":{"event_type":"pass","pressure":2,"confidence":0.7,"who":"player","risk_flag":"none","coaching_note":"Scan earlier","evidence":"Short pass under light pressure."}}}
+{"type":"vision.window","sessionId":"S123","ts":2,"payload":{"t0":1,"t1":2,"json":{"event_type":"turnover","pressure":4,"confidence":0.8,"who":"player","risk_flag":"fatigue","coaching_note":"Release earlier","evidence":"Lost ball while pressed."}}}
+{"type":"click.request","sessionId":"S123","ts":2,"payload":{"source":"web","mode":"player"}}
+{"type":"session.ended","sessionId":"S123","ts":3,"payload":{}}
