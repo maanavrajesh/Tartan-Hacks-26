@@ -4,6 +4,7 @@ import os
 import subprocess
 import uuid
 import threading
+from datetime import datetime, timezone
 from pathlib import Path
 from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
@@ -15,13 +16,19 @@ from player_ball_assigner import PlayerBallAssigner
 from camera_movement_estimator import CameraMovementEstimator
 from view_transformer import ViewTransformer
 from speed_and_distance_estimator import SpeedAndDistance_Estimator
+from player_feedback import generate_player_feedback
 import numpy as np
+import cv2
+import json
 
 app = Flask(__name__)
 CORS(app)
 
-UPLOAD_FOLDER = Path("uploads")
-OUTPUT_FOLDER = Path("output_videos")
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "models" / "best.pt"
+
+UPLOAD_FOLDER = BASE_DIR / "uploads"
+OUTPUT_FOLDER = BASE_DIR / "output_videos"
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 OUTPUT_FOLDER.mkdir(exist_ok=True)
 
@@ -37,6 +44,139 @@ def allowed_file(filename):
     return Path(filename).suffix.lower() in ALLOWED_EXTENSIONS
 
 
+def _build_tracks_for_ui(tracks, frame_shape, fps, sample_step=5):
+    height, width = frame_shape[:2]
+    if width <= 0 or height <= 0:
+        return []
+
+    def clamp01(value):
+        return max(0.0, min(1.0, value))
+
+    def add_tracks(track_frames, cls_name, id_prefix=None, fixed_id=None):
+        output = {}
+        for frame_idx, frame_tracks in enumerate(track_frames):
+            if sample_step > 1 and frame_idx % sample_step != 0:
+                continue
+            timestamp = round(frame_idx / fps, 2)
+            for track_id, track_info in frame_tracks.items():
+                bbox = track_info.get("bbox")
+                if not bbox or len(bbox) < 4:
+                    continue
+                x1, y1, x2, y2 = bbox
+                cx = clamp01(((x1 + x2) / 2) / width)
+                cy = clamp01(((y1 + y2) / 2) / height)
+                ui_id = fixed_id or f"{id_prefix}{track_id}"
+                if ui_id not in output:
+                    output[ui_id] = {
+                        "id": ui_id,
+                        "class": cls_name,
+                        "positions": [],
+                    }
+                output[ui_id]["positions"].append(
+                    {
+                        "timestamp": timestamp,
+                        "x": round(cx, 4),
+                        "y": round(cy, 4),
+                        "confidence": 1.0,
+                    }
+                )
+        return list(output.values())
+
+    players = add_tracks(tracks.get("players", []), "person", id_prefix="p_")
+    ball = add_tracks(tracks.get("ball", []), "sports_ball", fixed_id="ball")
+    return players + ball
+
+
+def _build_metrics_from_feedback(feedback):
+    if not feedback:
+        return []
+
+    avg_speeds = [f.get("avg_speed_kmh", 0) for f in feedback]
+    max_speeds = [f.get("max_speed_kmh", 0) for f in feedback]
+    distances = [f.get("distance_m", 0) for f in feedback]
+    ball_control = [f.get("ball_control_pct", 0) for f in feedback]
+
+    def safe_mean(values):
+        vals = [v for v in values if isinstance(v, (int, float))]
+        return round(sum(vals) / len(vals), 2) if vals else 0
+
+    return [
+        {
+            "id": "avg_speed",
+            "name": "Average Speed",
+            "value": safe_mean(avg_speeds),
+            "unit": "km/h",
+            "description": "Mean player speed across tracked players",
+            "context": "Team average",
+        },
+        {
+            "id": "max_speed",
+            "name": "Max Speed",
+            "value": round(max(max_speeds) if max_speeds else 0, 2),
+            "unit": "km/h",
+            "description": "Top speed reached by any tracked player",
+            "context": "Team peak",
+        },
+        {
+            "id": "total_distance",
+            "name": "Total Distance",
+            "value": round(sum(distances), 2),
+            "unit": "m",
+            "description": "Sum of distances across tracked players",
+            "context": "Team total",
+        },
+        {
+            "id": "ball_control",
+            "name": "Ball Control",
+            "value": safe_mean(ball_control),
+            "unit": "%",
+            "description": "Average ball control percentage across players",
+            "context": "Team average",
+        },
+    ]
+
+
+def _build_insights_from_feedback(feedback):
+    insights = []
+    if not feedback:
+        return insights
+
+    # Prefer LLM feedback if present
+    llm_source = next((f for f in feedback if f.get("llm_feedback")), None)
+    if llm_source and llm_source.get("llm_feedback"):
+        llm = llm_source["llm_feedback"]
+        for idx, insight in enumerate(llm.get("insights", [])[:3]):
+            title = insight.get("title") or "Insight"
+            why = insight.get("why_it_matters") or ""
+            action_list = insight.get("how_to_improve") or []
+            insights.append(
+                {
+                    "id": f"llm_{llm_source.get('player_id', 'p')}_{idx}",
+                    "claim": title,
+                    "evidenceEvents": [],
+                    "whyItMatters": why,
+                    "action": action_list[0] if action_list else "Review film and adjust positioning",
+                    "goal": llm.get("action_plan", {}).get("focus", "Improve performance"),
+                }
+            )
+        return insights
+
+    # Fall back to rule-based feedback from top player
+    fallback = feedback[0].get("feedback") if feedback else []
+    for idx, tip in enumerate(fallback[:3]):
+        insights.append(
+            {
+                "id": f"rule_{idx}",
+                "claim": tip,
+                "evidenceEvents": [],
+                "whyItMatters": "Derived from tracked movement and possession metrics.",
+                "action": "Review footage and apply the coaching cue.",
+                "goal": "Improve decision-making and positioning",
+            }
+        )
+    return insights
+
+
 def run_pipeline(video_id, input_path, output_path):
     """Run the full analysis pipeline in a background thread."""
     try:
@@ -49,7 +189,7 @@ def run_pipeline(video_id, input_path, output_path):
         if len(video_frames) == 0:
             raise ValueError(f"No frames read from video: {input_path}")
 
-        tracker = Tracker("models/best.pt")
+        tracker = Tracker(str(MODEL_PATH))
         tracks = tracker.get_object_tracks(video_frames, read_from_stub=False, stub_path=None)
         tracker.add_position_to_tracks(tracks)
 
@@ -115,6 +255,23 @@ def run_pipeline(video_id, input_path, output_path):
                 team_ball_control.append(team_ball_control[-1] if team_ball_control else 0)
         team_ball_control = np.array(team_ball_control)
 
+        # --- Player Feedback ---
+        jobs[video_id]["progress"] = 82
+        jobs[video_id]["currentStep"] = "Generating player feedback"
+
+        cap = cv2.VideoCapture(input_path)
+        fps = cap.get(cv2.CAP_PROP_FPS) or 24.0
+        cap.release()
+
+        feedback = generate_player_feedback(
+            tracks, fps, video_id,
+            output_folder=str(OUTPUT_FOLDER),
+            min_presence_sec=10.0,
+            use_llm=True,
+            llm_model=os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini"),
+            llm_timeout=30,
+        )
+
         jobs[video_id]["progress"] = 85
         jobs[video_id]["currentStep"] = "Rendering annotated video"
 
@@ -135,6 +292,40 @@ def run_pipeline(video_id, input_path, output_path):
         )
         if os.path.exists(avi_path):
             os.remove(avi_path)
+
+        # Write artifacts for frontend UI
+        try:
+            frame_shape = video_frames[0].shape if video_frames else (0, 0, 0)
+            sample_step = max(int(fps / 5), 1)
+            ui_tracks = _build_tracks_for_ui(tracks, frame_shape, fps, sample_step=sample_step)
+
+            duration_s = round(len(video_frames) / fps, 2) if fps else 0
+            meta = {
+                "id": video_id,
+                "filename": jobs[video_id].get("filename", f"{video_id}.mp4"),
+                "duration": duration_s,
+                "width": int(frame_shape[1]) if frame_shape else 0,
+                "height": int(frame_shape[0]) if frame_shape else 0,
+                "fps": round(fps, 2),
+                "sport": "soccer",
+                "uploadedAt": jobs[video_id].get("uploaded_at", ""),
+                "status": "complete",
+            }
+
+            artifacts = {
+                "meta": meta,
+                "events": [],
+                "metrics": _build_metrics_from_feedback(feedback),
+                "predictions": {"riskScores": [], "topRiskMoments": []},
+                "insights": _build_insights_from_feedback(feedback),
+                "tracks": ui_tracks,
+            }
+
+            artifacts_path = OUTPUT_FOLDER / f"{video_id}_artifacts.json"
+            with open(artifacts_path, "w", encoding="utf-8") as f:
+                json.dump(artifacts, f, indent=2)
+        except Exception as e:
+            print(f"Artifacts error: {e}")
 
         # Done
         jobs[video_id]["status"] = "complete"
@@ -183,6 +374,8 @@ def upload():
         "currentStep": "uploaded",
         "error": None,
         "input_path": input_path,
+        "filename": file.filename,
+        "uploaded_at": datetime.now(timezone.utc).isoformat(),
     }
 
     return jsonify({"videoId": video_id})
@@ -234,6 +427,28 @@ def serve_video(video_id):
     if not output_path.exists():
         return jsonify({"error": "Video not found"}), 404
     return send_file(output_path, mimetype="video/mp4", as_attachment=False)
+
+
+@app.route("/api/feedback/<video_id>")
+def feedback(video_id):
+    """Serve the player feedback JSON."""
+    feedback_path = OUTPUT_FOLDER / f"{video_id}_feedback.json"
+    if not feedback_path.exists():
+        return jsonify({"error": "Feedback not found"}), 404
+    with open(feedback_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return jsonify(data)
+
+
+@app.route("/api/artifacts/<video_id>")
+def artifacts(video_id):
+    """Serve combined analysis artifacts for the frontend UI."""
+    artifacts_path = OUTPUT_FOLDER / f"{video_id}_artifacts.json"
+    if not artifacts_path.exists():
+        return jsonify({"error": "Artifacts not found"}), 404
+    with open(artifacts_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return jsonify(data)
 
 
 @app.route("/api/download/<video_id>")

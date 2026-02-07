@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-card: #1a1a24;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --border: #2a2a3a;
+  }
+
+  html {
+    @apply antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-light;
+  }
+}
+
+@layer components {
+  /* Card base styles */
+  .card {
+    @apply bg-bg-card border border-border rounded-xl;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:bg-bg-card-hover hover:border-border-light;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-accent-blue hover:bg-accent-blue/90 text-white font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-card hover:bg-bg-card-hover text-text-primary border border-border font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+
+  /* Event chip styles */
+  .event-chip {
+    @apply px-3 py-1.5 rounded-full text-xs font-medium cursor-pointer transition-all;
+  }
+
+  .event-chip-shot {
+    @apply bg-event-shot/20 text-event-shot border border-event-shot/40 hover:bg-event-shot/30;
+  }
+
+  .event-chip-turnover {
+    @apply bg-event-turnover/20 text-event-turnover border border-event-turnover/40 hover:bg-event-turnover/30;
+  }
+
+  .event-chip-press {
+    @apply bg-event-press/20 text-event-press border border-event-press/40 hover:bg-event-press/30;
+  }
+
+  .event-chip-attack {
+    @apply bg-event-attack/20 text-event-attack border border-event-attack/40 hover:bg-event-attack/30;
+  }
+
+  .event-chip-dead {
+    @apply bg-event-dead/20 text-event-dead border border-event-dead/40 hover:bg-event-dead/30;
+  }
+
+  /* Risk gradient bar */
+  .risk-gradient {
+    background: linear-gradient(
+      to right,
+      var(--risk-low, #22c55e) 0%,
+      var(--risk-medium, #eab308) 50%,
+      var(--risk-high, #ef4444) 100%
+    );
+  }
+
+  /* Video overlay canvas */
+  .video-overlay {
+    @apply absolute inset-0 pointer-events-none;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply bg-bg-card animate-pulse rounded;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-bg-card/80 backdrop-blur-md;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-blue/50 focus:ring-offset-2 focus:ring-offset-bg-primary;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120px) rotate(140deg);
+    opacity: 0;
+  }
+}
+
+.player-3d {
+  position: absolute;
+}
+
+.player-3d::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  filter: blur(1px);
+  transform: translate(-8%, -8%);
+}
+
+.player-3d::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  width: 90%;
+  height: 45%;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  filter: blur(6px);
+  transform: translate(-50%, 20%);
+  z-index: -1;
+}
