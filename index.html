@@ -6,7 +6,12 @@
   <title>VisionXI</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a12; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(180deg, #fff3e6 0%, #f6e9df 45%, #f2e1d7 100%);
+    }
     #canvas { display: block; width: 100%; height: 100%; }
     #overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -18,7 +23,7 @@
       font-size: clamp(48px, 8vw, 120px);
       font-weight: 800;
       letter-spacing: 0.05em;
-      background: linear-gradient(135deg, #0077b6, #00b4d8, #6a1b9a);
+      background: linear-gradient(135deg, #ef4444, #f97316, #fb7185);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       opacity: 0;
@@ -31,10 +36,27 @@
       font-size: clamp(14px, 2vw, 24px);
       font-weight: 300;
       letter-spacing: 0.3em;
-      color: #7c3aed;
+      color: #f29f8f;
       opacity: 0;
       text-align: center;
       margin-top: 8px;
+    }
+    #cta {
+      margin-top: 14px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(239, 68, 68, 0.45);
+      background: rgba(255, 243, 230, 0.6);
+      color: #ef6b4a;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: clamp(12px, 1.6vw, 18px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
     }
     #overlay-inner { display: flex; flex-direction: column; align-items: center; }
   </style>
@@ -45,6 +67,7 @@
     <div id="overlay-inner">
       <div id="logo">VisionXI</div>
       <div id="tagline">THE FUTURE OF FOOTBALL</div>
+      <button id="cta" type="button">Press to Continue</button>
     </div>
   </div>
 

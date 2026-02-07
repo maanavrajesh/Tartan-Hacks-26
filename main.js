@@ -10,50 +10,143 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.2;
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x0b0714, 0.03);
+scene.fog = new THREE.FogExp2(0xf6e9df, 0.02);
 
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
 camera.position.set(0, 2, 10);
 camera.lookAt(0, 1, 0);
 
 // ─── COLORS ─────────────────────────────────────────────────
-const ELECTRIC_BLUE = new THREE.Color(0x3b82f6);
-const NEON_PURPLE   = new THREE.Color(0x7c3aed);
-const HOT_MAGENTA   = new THREE.Color(0xd946ef);
-const DEEP_VIOLET   = new THREE.Color(0x4c1d95);
-const MIDNIGHT      = new THREE.Color(0x0f172a);
+const SOFT_PEACH    = new THREE.Color(0xf6c4a6);
+const WARM_IVORY    = new THREE.Color(0xfff3e6);
+const SUNSET_ORANGE = new THREE.Color(0xf97316);
+const CORAL_RED     = new THREE.Color(0xef4444);
+const ROSE_GLOW     = new THREE.Color(0xfb7185);
 
 // ~50% darker blues/purples, ~25% ocean/cyan, ~25% deep purples
 const PALETTE = [
-  ELECTRIC_BLUE, NEON_PURPLE, HOT_MAGENTA, DEEP_VIOLET,
-  ELECTRIC_BLUE, NEON_PURPLE, MIDNIGHT, DEEP_VIOLET,
+  CORAL_RED, SUNSET_ORANGE, ROSE_GLOW, SUNSET_ORANGE,
+  CORAL_RED, SUNSET_ORANGE, SOFT_PEACH, ROSE_GLOW,
 ];
 
 // ─── LIGHTING ───────────────────────────────────────────────
-scene.add(new THREE.AmbientLight(0x2b1b3a, 0.75));
+scene.add(new THREE.AmbientLight(0xffefe3, 0.95));
 
-const key = new THREE.DirectionalLight(0xccddff, 1.8);
-key.position.set(5, 8, 6);
+const key = new THREE.DirectionalLight(0xfff2e8, 2.0);
+key.position.set(6, 10, 4);
 key.castShadow = true;
 scene.add(key);
 
-const rim = new THREE.PointLight(0x6d28d9, 1.3, 30);
-rim.position.set(-4, 4, -4);
+const rim = new THREE.PointLight(0xffb4a2, 1.1, 30);
+rim.position.set(-5, 5, -6);
 scene.add(rim);
 
-const fill = new THREE.PointLight(0x4c1d95, 0.7, 25);
-fill.position.set(3, 1, 5);
+const fill = new THREE.PointLight(0xffd7c2, 0.8, 25);
+fill.position.set(3, 2, 6);
 scene.add(fill);
 
-// ─── GROUND (subtle) ───────────────────────────────────────
+// ─── GROUND (soccer field) ─────────────────────────────────
+function createFieldTexture() {
+  const size = 1024;
+  const c = document.createElement('canvas');
+  c.width = size;
+  c.height = size;
+  const ctx = c.getContext('2d');
+
+  // Base grass
+  ctx.fillStyle = '#5b8f47';
+  ctx.fillRect(0, 0, size, size);
+
+  // Mowed stripes
+  for (let i = 0; i < 12; i++) {
+    ctx.fillStyle = i % 2 === 0 ? '#5f984a' : '#557f42';
+    ctx.fillRect(0, (i * size) / 12, size, size / 12);
+  }
+
+  // Subtle noise
+  for (let i = 0; i < 12000; i++) {
+    const x = Math.random() * size;
+    const y = Math.random() * size;
+    const v = Math.random() * 30;
+    ctx.fillStyle = `rgba(0,0,0,${v / 255})`;
+    ctx.fillRect(x, y, 1, 1);
+  }
+
+  // Field lines (center circle + halfway line)
+  ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+  ctx.lineWidth = 6;
+  ctx.beginPath();
+  ctx.arc(size / 2, size / 2, size * 0.12, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(0, size / 2);
+  ctx.lineTo(size, size / 2);
+  ctx.stroke();
+
+  // Sidelines
+  ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+  ctx.lineWidth = 5;
+  ctx.strokeRect(size * 0.06, size * 0.06, size * 0.88, size * 0.88);
+
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
+  tex.repeat.set(1, 1);
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return tex;
+}
+
+const fieldTex = createFieldTexture();
 const ground = new THREE.Mesh(
   new THREE.PlaneGeometry(80, 80),
-  new THREE.MeshStandardMaterial({ color: 0x0a0a12, roughness: 0.95 })
+  new THREE.MeshStandardMaterial({
+    color: 0x7aa667,
+    roughness: 0.95,
+    map: fieldTex,
+  })
 );
 ground.rotation.x = -Math.PI / 2;
 ground.position.y = -0.5;
 ground.receiveShadow = true;
 scene.add(ground);
+
+// ─── GOAL (background) ─────────────────────────────────────
+function buildGoal() {
+  const goal = new THREE.Group();
+  const postMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    roughness: 0.4,
+    metalness: 0.1,
+  });
+  const netMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    roughness: 0.9,
+    metalness: 0.0,
+    transparent: true,
+    opacity: 0.35,
+  });
+
+  const postGeo = new THREE.CylinderGeometry(0.12, 0.12, 3.6, 10);
+  const barGeo = new THREE.CylinderGeometry(0.12, 0.12, 11.0, 10);
+
+  const leftPost = new THREE.Mesh(postGeo, postMat);
+  leftPost.position.set(-5.5, 1.8, 0);
+  const rightPost = new THREE.Mesh(postGeo, postMat);
+  rightPost.position.set(5.5, 1.8, 0);
+  const crossBar = new THREE.Mesh(barGeo, postMat);
+  crossBar.position.set(0, 3.6, 0);
+  crossBar.rotation.z = Math.PI / 2;
+
+  // Simple net plane
+  const net = new THREE.Mesh(new THREE.PlaneGeometry(11.4, 3.8), netMat);
+  net.position.set(0, 1.8, -2.4);
+
+  goal.add(leftPost, rightPost, crossBar, net);
+  goal.position.set(0, -0.45, -34);
+  return goal;
+}
+
+const goal = buildGoal();
+scene.add(goal);
 
 // ─── PARTICLES (background ambience) ────────────────────────
 const PARTICLE_COUNT = 600;
@@ -66,10 +159,21 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
 }
 particleGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
 const particleMat = new THREE.PointsMaterial({
-  size: 0.06, color: 0x00b4d8, transparent: true, opacity: 0.4, depthWrite: false
+  size: 0.06, color: 0xffb89b, transparent: true, opacity: 0.35, depthWrite: false
 });
 const particles = new THREE.Points(particleGeo, particleMat);
 scene.add(particles);
+
+// Background fade group (field + goal + particles)
+const bgFadeTargets = [ground, goal, particles];
+bgFadeTargets.forEach(obj => {
+  obj.traverse?.(child => {
+    if (child.material) {
+      child.material.transparent = true;
+    }
+  });
+  if (obj.material) obj.material.transparent = true;
+});
 
 // ═══════════════════════════════════════════════════════════
 //  SOCCER BALL  — truncated icosahedron panels
@@ -218,10 +322,10 @@ function buildSoccerBall() {
         thickness: 0.6,
         transparent: true,
         opacity: 0.9,
-        attenuationColor: midColor.clone().lerp(new THREE.Color(0xffffff), 0.5),
-        attenuationDistance: 2.0,
-        emissive: midColor.clone().multiplyScalar(0.35),
-        emissiveIntensity: 0.8,
+        attenuationColor: midColor.clone().lerp(new THREE.Color(0xffffff), 0.6),
+        attenuationDistance: 2.6,
+        emissive: midColor.clone().multiplyScalar(0.28),
+        emissiveIntensity: 0.7,
       });
 
       const mesh = new THREE.Mesh(geo, mat);
@@ -262,6 +366,7 @@ scene.add(ballGroup);
 
 const tl = gsap.timeline({ delay: 0.3 });
 const state = { phase: 'intro', shattered: false, time: 0 };
+const cta = document.getElementById('cta');
 
 // -- Phase 1: Ball intro — rotate, camera orbit (0s–3s) --
 tl.to(ballGroup.rotation, { y: Math.PI * 2, duration: 3, ease: 'power1.inOut' }, 0);
@@ -313,6 +418,33 @@ tl.to('#logo', {
 tl.to('#tagline', {
   opacity: 0.7, duration: 1.2, ease: 'power2.out'
 }, 7.6);
+
+// CTA appears 2s after the title shows (title at 6.8s → CTA at 8.8s)
+tl.to('#cta', {
+  opacity: 1,
+  y: 0,
+  duration: 1.0,
+  ease: 'power2.out',
+  onStart: () => { cta.style.pointerEvents = 'auto'; }
+}, 8.8);
+
+cta.addEventListener('click', () => {
+  // Placeholder: wire this to your future site route
+  // window.location.href = '/';
+  console.log('CTA clicked');
+});
+
+// Fade out background after shatter
+tl.to(bgFadeTargets.map(o => (o.material ? o.material : null)).filter(Boolean), {
+  opacity: 0,
+  duration: 2.5,
+  ease: 'power2.out'
+}, 6.0);
+goal.traverse(child => {
+  if (child.material) {
+    tl.to(child.material, { opacity: 0, duration: 2.5, ease: 'power2.out' }, 6.0);
+  }
+});
 
 // ═══════════════════════════════════════════════════════════
 //  RENDER LOOP
