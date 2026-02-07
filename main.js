@@ -308,7 +308,17 @@ function buildSoccerBall() {
         colors[vi * 3 + 1] = tmpColor.g;
         colors[vi * 3 + 2] = tmpColor.b;
       }
-      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      // Preserve full-color target and compute grayscale start
+      const fullColors = new Float32Array(colors.length);
+      fullColors.set(colors);
+      const grayColors = new Float32Array(colors.length);
+      for (let ci = 0; ci < colors.length; ci += 3) {
+        const white = 1.0;
+        grayColors[ci] = white;
+        grayColors[ci + 1] = white;
+        grayColors[ci + 2] = white;
+      }
+      geo.setAttribute('color', new THREE.BufferAttribute(grayColors, 3));
 
       const midColor = colorA.clone().lerp(colorB, 0.5);
       const mat = new THREE.MeshPhysicalMaterial({
@@ -349,6 +359,9 @@ function buildSoccerBall() {
         origQuat: q.clone(),
         normal: normal.clone(),
         color: midColor.clone(),
+        fullColors,
+        grayColors,
+        colorAttr: geo.getAttribute('color'),
       });
     });
   });
@@ -365,12 +378,13 @@ scene.add(ballGroup);
 // ═══════════════════════════════════════════════════════════
 
 const tl = gsap.timeline({ delay: 0.3 });
-const state = { phase: 'intro', shattered: false, time: 0 };
+const state = { phase: 'intro', shattered: false, time: 0, colorLerp: 0 };
 const cta = document.getElementById('cta');
 
 // -- Phase 1: Ball intro — rotate, camera orbit (0s–3s) --
 tl.to(ballGroup.rotation, { y: Math.PI * 2, duration: 3, ease: 'power1.inOut' }, 0);
 tl.to(camera.position, { x: 3, y: 2.5, z: 8, duration: 3, ease: 'power2.inOut' }, 0);
+tl.to(state, { colorLerp: 1, duration: 5.5, ease: 'power2.inOut' }, 0.2);
 
 // -- Phase 2b: Camera swings to side view (3s–4.5s) --
 tl.to(camera.position, { x: 5, y: 2, z: 6, duration: 1.5, ease: 'power2.inOut' }, 3);
@@ -429,9 +443,7 @@ tl.to('#cta', {
 }, 8.8);
 
 cta.addEventListener('click', () => {
-  // Placeholder: wire this to your future site route
-  // window.location.href = '/';
-  console.log('CTA clicked');
+  window.location.href = 'main.html';
 });
 
 // Fade out background after shatter
@@ -503,6 +515,21 @@ function animate() {
     if (state.phase === 'shatter' && state.time > 7.5) {
       state.phase = 'float';
     }
+  }
+
+  // Color transition: grayscale -> theme palette
+  if (state.colorLerp < 1) {
+    const t = state.colorLerp;
+    panels.forEach(p => {
+      const attr = p.colorAttr;
+      const arr = attr.array;
+      const gray = p.grayColors;
+      const full = p.fullColors;
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = gray[i] + (full[i] - gray[i]) * t;
+      }
+      attr.needsUpdate = true;
+    });
   }
 
   // Ambient particle drift
