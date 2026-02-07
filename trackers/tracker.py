@@ -1,6 +1,9 @@
 """Tracking and annotation utilities built on YOLO and ByteTrack."""
 
 from ultralytics import YOLO
+import torch
+import ultralytics.nn.tasks as tasks
+import functools
 import supervision as sv
 import pickle
 import os
@@ -14,7 +17,14 @@ from utils import get_center_of_bbox, get_bbox_width, get_foot_position
 class Tracker:
     def __init__(self, model_path):
         # Load detection model and tracker once for reuse across frames.
-        self.model = YOLO(model_path) 
+        # Trusting the checkpoint: force torch.load(weights_only=False) during model load.
+        torch.serialization.add_safe_globals([tasks.DetectionModel])
+        original_torch_load = torch.load
+        torch.load = functools.partial(original_torch_load, weights_only=False)
+        try:
+            self.model = YOLO(model_path)
+        finally:
+            torch.load = original_torch_load
         self.tracker = sv.ByteTrack()
 
     def add_position_to_tracks(sekf,tracks):
