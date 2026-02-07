@@ -1,0 +1,2146 @@
+[
+  {
+    "player_id": 7,
+    "team": null,
+    "frames_present": 731,
+    "possession_frames": 63,
+    "possession_pct_of_present": 8.62,
+    "possession_pct_of_total": 12.57,
+    "distance_m": 52.88,
+    "avg_speed_kmh": 6.99,
+    "max_speed_kmh": 39.52,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 13.11,
+        "t1": 13.38
+      },
+      {
+        "t0": 19.85,
+        "t1": 20.05
+      },
+      {
+        "t0": 20.19,
+        "t1": 21.72
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 5.44
+      },
+      {
+        "t0": 5.57,
+        "t1": 6.07
+      },
+      {
+        "t0": 6.17,
+        "t1": 7.77
+      },
+      {
+        "t0": 7.94,
+        "t1": 9.98
+      },
+      {
+        "t0": 10.21,
+        "t1": 18.12
+      },
+      {
+        "t0": 18.25,
+        "t1": 18.92
+      },
+      {
+        "t0": 18.99,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.16,
+    "position_rank_pct": 77.78,
+    "position_role": "advanced",
+    "ball_control_pct": 8.62,
+    "field_control_adv_pct": 87.14,
+    "field_control_mid_pct": 5.88,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 89.33,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "You spend most of your time advanced. Stay connected to avoid getting isolated.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 13.11 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. Strong maximum speed is recorded. Use that speed to create separation in similar moments. You spend most of your time advanced. Stay connected to avoid getting isolated. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=8.62, field_adv=87.14, field_mid=5.88, field_deep=0.0, movement=89.33, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "8.62% ball control indicates limited ability to maintain possession under pressure.",
+        "movement": "Average speed of 6.99 km/h and a top speed of 39.52 km/h show potential for quick bursts of speed, particularly with a top speed time of 12.18 seconds.",
+        "pressure_context": "0.0% pressure control suggests minimal effectiveness in maintaining possession while facing defensive pressure."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control",
+          "what_happened": "The player showed a low ball control percentage at 8.62%, which means they struggle to retain possession.",
+          "why_it_matters": "Improving ball control allows for better retention of possession, reducing turnovers and increasing attacking opportunities.",
+          "how_to_improve": [
+            "Engage in focused dribbling drills to enhance ball manipulation under pressure.",
+            "Incorporate possession-based training games to simulate real-game situations and build confidence.",
+            "Work on individual footwork skills to enhance agility and control."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession retention"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "8.62"
+          }
+        },
+        {
+          "title": "Movement and Speed Potential",
+          "what_happened": "The player recorded an average speed of 6.99 km/h with a maximum speed of 39.52 km/h over short bursts.",
+          "why_it_matters": "This speed can be advantageous in transitional play, allowing the player to exploit spaces behind defenses.",
+          "how_to_improve": [
+            "Implement sprinting drills to increase average speed on the field.",
+            "Use plyometric exercises to enhance explosive acceleration.",
+            "Analyze game footage to identify optimal moments for utilizing speed."
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "maximum speed"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "6.99",
+            "max_speed_kmh": "39.52"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control and maintain defensive positioning to improve possession.",
+        "next_step": "Conduct specific drills targeting ball control and speed enhancement during training sessions.",
+        "success_indicator": "Improved ball control percentage and increased average speed measured in subsequent performances."
+      }
+    }
+  },
+  {
+    "player_id": 11,
+    "team": null,
+    "frames_present": 741,
+    "possession_frames": 45,
+    "possession_pct_of_present": 6.07,
+    "possession_pct_of_total": 8.98,
+    "distance_m": 58.91,
+    "avg_speed_kmh": 6.93,
+    "max_speed_kmh": 38.15,
+    "top_speed_time_s": 3.84,
+    "possession_windows_s": [
+      {
+        "t0": 3.0,
+        "t1": 4.3
+      },
+      {
+        "t0": 24.86,
+        "t1": 24.99
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 22.32
+      },
+      {
+        "t0": 22.39,
+        "t1": 22.46
+      },
+      {
+        "t0": 22.69,
+        "t1": 23.69
+      },
+      {
+        "t0": 23.76,
+        "t1": 23.92
+      },
+      {
+        "t0": 23.99,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.55,
+    "position_rank_pct": 11.11,
+    "position_role": "deep",
+    "ball_control_pct": 6.07,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 2.83,
+    "field_control_deep_pct": 97.17,
+    "movement_control_pct": 98.79,
+    "pressure_control_pct": 97.17,
+    "feedback": [
+      "You play deeper than most teammates. Look for earlier forward support runs.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "You are among the deepest players in this window. Offer a nearby support option.",
+      "You spend most of your time deep. Step in to support the next pass when safe.",
+      "Movement control is high. Maintain your scanning so runs are timed.",
+      "Pressure control is high. Use that stability to help the team reset."
+    ],
+    "formatted_feedback": "I noticed You play deeper than most teammates. Look for earlier forward support runs. from 3.0 second video and this is my feedback: You play deeper than most teammates. Look for earlier forward support runs. Strong maximum speed is recorded. Use that speed to create separation in similar moments. You are among the deepest players in this window. Offer a nearby support option. You spend most of your time deep. Step in to support the next pass when safe. Movement control is high. Maintain your scanning so runs are timed. Pressure control is high. Use that stability to help the team reset. (control%: ball=6.07, field_adv=0.0, field_mid=2.83, field_deep=97.17, movement=98.79, pressure=97.17)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "6.07%",
+        "movement": "Average speed of 6.93 km/h; Max speed of 38.15 km/h over 3.84 seconds.",
+        "pressure_context": "Presence total time of 24.55 seconds with high movement control (98.79%) and pressure control (97.17%) percentages."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control in Possession",
+          "what_happened": "The player's ball control percentage stands at 6.07%, indicating minimal involvement with the ball during possession.",
+          "why_it_matters": "Effective ball control is crucial for a deep-lying player as it facilitates transition play and builds attacking sequences from deeper positions.",
+          "how_to_improve": [
+            "Increase engagement in passing drills.",
+            "Focus on tight ball control exercises.",
+            "Utilize small-sided games to enhance decision-making under pressure."
+          ],
+          "technical_terms_used": [
+            "Ball control",
+            "Possession",
+            "Transition play"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "6.07%"
+          }
+        },
+        {
+          "title": "Strong Defensive Positioning",
+          "what_happened": "The player exhibited a high field control in the deep position at 97.17%, indicating effectiveness in their role.",
+          "why_it_matters": "This metric shows that the player is well-positioned to disrupt opposing play and support defensive actions, which is critical for a deep-lying role.",
+          "how_to_improve": [
+            "Refine tackling and intercepting skills.",
+            "Work on reading the game to anticipate opposition movement.",
+            "Enhance communication with teammates for better defensive coordination."
+          ],
+          "technical_terms_used": [
+            "Field control",
+            "Defensive positioning",
+            "Interception"
+          ],
+          "evidence_used": {
+            "field_control_deep_pct": "97.17%"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Improve ball control and engage more in possession-related activities.",
+        "next_step": "Implement specific technical drills aimed at enhancing ball control during possession.",
+        "success_indicator": "Achieve an increase in ball control percentage over the next performance review."
+      }
+    }
+  },
+  {
+    "player_id": 6,
+    "team": null,
+    "frames_present": 750,
+    "possession_frames": 43,
+    "possession_pct_of_present": 5.73,
+    "possession_pct_of_total": 8.58,
+    "distance_m": 64.88,
+    "avg_speed_kmh": 7.48,
+    "max_speed_kmh": 34.46,
+    "top_speed_time_s": 12.01,
+    "possession_windows_s": [
+      {
+        "t0": 0.4,
+        "t1": 1.27
+      },
+      {
+        "t0": 1.37,
+        "t1": 1.77
+      },
+      {
+        "t0": 22.92,
+        "t1": 22.99
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.99,
+    "position_rank_pct": 44.44,
+    "position_role": "mid",
+    "ball_control_pct": 5.73,
+    "field_control_adv_pct": 26.4,
+    "field_control_mid_pct": 72.27,
+    "field_control_deep_pct": 1.33,
+    "movement_control_pct": 99.87,
+    "pressure_control_pct": 1.33,
+    "feedback": [
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed Strong maximum speed is recorded. Use that speed to create separation in similar moments. from 0.4 second video and this is my feedback: Strong maximum speed is recorded. Use that speed to create separation in similar moments. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=5.73, field_adv=26.4, field_mid=72.27, field_deep=1.33, movement=99.87, pressure=1.33)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "5.73%",
+        "movement": "Avg speed of 7.48 km/h with a max speed of 34.46 km/h, indicating capability for fast sprints.",
+        "pressure_context": "Pressure control percentage is at 1.33%, suggesting limited effectiveness in high-pressure situations."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control in Possession",
+          "what_happened": "The player has a ball control percentage of only 5.73%, indicating struggles to retain or manipulate the ball effectively while in possession.",
+          "why_it_matters": "Low ball control can hinder offensive plays and lead to turnovers, affecting overall team performance.",
+          "how_to_improve": [
+            "Engage in ball skills drills to enhance touch and control.",
+            "Include small-sided games to practice retaining possession under pressure.",
+            "Analyze footage to identify common situations leading to loss of control."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "5.73%"
+          }
+        },
+        {
+          "title": "Movement and Sprinting Potential",
+          "what_happened": "The player showcases a maximum speed of 34.46 km/h over a top speed time of 12.01 seconds, indicating significant sprinting potential.",
+          "why_it_matters": "Exploiting this sprint capability can create separation from defenders and open up attacking opportunities.",
+          "how_to_improve": [
+            "Incorporate speed drills focusing on acceleration and deceleration.",
+            "Utilize tactical drills that encourage utilizing speed for creating space.",
+            "Work on stamina to maintain high speeds throughout the match."
+          ],
+          "technical_terms_used": [
+            "max speed",
+            "sprinting"
+          ],
+          "evidence_used": {
+            "max_speed_kmh": "34.46",
+            "top_speed_time_s": "12.01"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Improve ball control and integrate sprinting into play.",
+        "next_step": "Implement targeted training sessions that emphasize ball handling and agility drills alongside speed exercises.",
+        "success_indicator": "Increase in ball control percentage and successful high-speed interventions during matches."
+      }
+    }
+  },
+  {
+    "player_id": 3,
+    "team": null,
+    "frames_present": 747,
+    "possession_frames": 37,
+    "possession_pct_of_present": 4.95,
+    "possession_pct_of_total": 7.39,
+    "distance_m": 76.27,
+    "avg_speed_kmh": 8.77,
+    "max_speed_kmh": 37.77,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 10.34,
+        "t1": 10.41
+      },
+      {
+        "t0": 23.02,
+        "t1": 23.32
+      },
+      {
+        "t0": 24.06,
+        "t1": 24.82
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 4.84
+      },
+      {
+        "t0": 4.9,
+        "t1": 6.57
+      },
+      {
+        "t0": 6.67,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.83,
+    "position_rank_pct": 25.93,
+    "position_role": "deep",
+    "ball_control_pct": 4.95,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 35.48,
+    "field_control_deep_pct": 64.52,
+    "movement_control_pct": 99.87,
+    "pressure_control_pct": 64.52,
+    "feedback": [
+      "You play deeper than most teammates. Look for earlier forward support runs.",
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "You spend most of your time deep. Step in to support the next pass when safe.",
+      "Movement control is high. Maintain your scanning so runs are timed.",
+      "Pressure control is high. Use that stability to help the team reset."
+    ],
+    "formatted_feedback": "I noticed You play deeper than most teammates. Look for earlier forward support runs. from 10.34 second video and this is my feedback: You play deeper than most teammates. Look for earlier forward support runs. High movement is recorded in this window. Keep your movement quality consistent. Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. You spend most of your time deep. Step in to support the next pass when safe. Movement control is high. Maintain your scanning so runs are timed. Pressure control is high. Use that stability to help the team reset. (control%: ball=4.95, field_adv=0.0, field_mid=35.48, field_deep=64.52, movement=99.87, pressure=64.52)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "4.95%",
+        "movement": "Avg Speed: 8.77 km/h, Max Speed: 37.77 km/h over a distance of 76.27 m",
+        "pressure_context": "Pressure Control: 64.52% in presence over 24.83 seconds."
+      },
+      "insights": [
+        {
+          "title": "Low Ball Control",
+          "what_happened": "The player demonstrated a ball control percentage of only 4.95% during possession windows.",
+          "why_it_matters": "Low ball control can hinder a player's ability to maintain possession and make effective plays in critical situations.",
+          "how_to_improve": [
+            "Enhance dribbling skills through targeted drills.",
+            "Increase technical proficiency with the ball under pressure.",
+            "Engage in small-sided games to improve decision-making in tight spaces."
+          ],
+          "technical_terms_used": [
+            "Ball Control",
+            "Possession",
+            "Dribbling"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "4.95%"
+          }
+        },
+        {
+          "title": "Strong Movement Control",
+          "what_happened": "The player exhibited a high movement control percentage of 99.87%, indicating excellent spatial awareness and positioning.",
+          "why_it_matters": "High movement control allows the player to cover ground efficiently and to be involved in the game without necessarily being on the ball.",
+          "how_to_improve": [
+            "Maintain fitness levels to sustain high movement during matches.",
+            "Work on tactical awareness for better positioning.",
+            "Focus on maintaining pace while executing plays."
+          ],
+          "technical_terms_used": [
+            "Movement Control",
+            "Spatial Awareness",
+            "Positioning"
+          ],
+          "evidence_used": {
+            "movement_control_pct": "99.87%"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Improve ball control and technical skills during possession.",
+        "next_step": "Implement ball control drills in training sessions.",
+        "success_indicator": "Increase ball control percentage from 4.95% to above 15%."
+      }
+    }
+  },
+  {
+    "player_id": 13,
+    "team": null,
+    "frames_present": 744,
+    "possession_frames": 34,
+    "possession_pct_of_present": 4.57,
+    "possession_pct_of_total": 6.79,
+    "distance_m": 0.0,
+    "avg_speed_kmh": 0.0,
+    "max_speed_kmh": 0.0,
+    "top_speed_time_s": 19.99,
+    "possession_windows_s": [
+      {
+        "t0": 12.25,
+        "t1": 12.31
+      },
+      {
+        "t0": 12.38,
+        "t1": 12.51
+      },
+      {
+        "t0": 16.78,
+        "t1": 16.95
+      },
+      {
+        "t0": 17.08,
+        "t1": 17.72
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 4.1
+      },
+      {
+        "t0": 4.2,
+        "t1": 9.88
+      },
+      {
+        "t0": 10.04,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.73,
+    "position_rank_pct": 100.0,
+    "position_role": "advanced",
+    "ball_control_pct": 4.57,
+    "field_control_adv_pct": 0.13,
+    "field_control_mid_pct": 0.0,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 0.0,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "Low movement is recorded in this window. Add one clear movement action in similar moments.",
+      "Maximum speed is low in this window. Add a short acceleration action in similar moments.",
+      "You are among the most advanced players in this window. Stay available without drifting too high.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is low. Add one clear movement action to create a new option."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 12.25 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. Low movement is recorded in this window. Add one clear movement action in similar moments. Maximum speed is low in this window. Add a short acceleration action in similar moments. You are among the most advanced players in this window. Stay available without drifting too high. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is low. Add one clear movement action to create a new option. (control%: ball=4.57, field_adv=0.13, field_mid=0.0, field_deep=0.0, movement=0.0, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "4.57%",
+        "movement": "No data on movement metrics as avg_speed_kmh and max_speed_kmh are both 0.0 km/h, indicating lack of movement during the observed time.",
+        "pressure_context": "0.0% pressure control suggests the player was not under defensive pressure or did not engage in pressing scenarios."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control Activity",
+          "what_happened": "The player had a very low ball control percentage of 4.57%, indicating minimal involvement in ball possession during the evidence window.",
+          "why_it_matters": "Low ball control can hinder a team's ability to maintain possession and create attacking opportunities. This suggests a need for improvement in ball engagement.",
+          "how_to_improve": [
+            "Increase practice on dribbling under pressure",
+            "Enhance first touch control in dynamic scenarios",
+            "Engage in small-sided games to boost ball interaction"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession",
+            "dribbling"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "4.57%"
+          }
+        },
+        {
+          "title": "Lack of Movement Metrics",
+          "what_happened": "The player's average speed and maximum speed were both recorded at 0.0 km/h, indicating no movement during the assessed time.",
+          "why_it.matters": "Movement is crucial in soccer as it affects positioning, support, and overall game impact. A lack of movement can isolate the player and reduce their effectiveness.",
+          "how_to_improve": [
+            "Incorporate agility drills to enhance movement",
+            "Practice off-the-ball runs to create space",
+            "Focus on fitness to sustain higher activity levels during games"
+          ],
+          "technical_terms_used": [
+            "movement",
+            "agility",
+            "positioning"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "0.0",
+            "max_speed_kmh": "0.0"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Develop ball control and movement skills",
+        "next_step": "Implement targeted training sessions emphasizing dribbling and dynamic movement",
+        "success_indicator": "Increased ball control percentage and improved speed metrics in subsequent evaluations"
+      }
+    }
+  },
+  {
+    "player_id": 12,
+    "team": null,
+    "frames_present": 740,
+    "possession_frames": 25,
+    "possession_pct_of_present": 3.38,
+    "possession_pct_of_total": 4.99,
+    "distance_m": 70.39,
+    "avg_speed_kmh": 8.73,
+    "max_speed_kmh": 41.73,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 10.44,
+        "t1": 10.54
+      },
+      {
+        "t0": 23.36,
+        "t1": 24.02
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 5.67
+      },
+      {
+        "t0": 5.77,
+        "t1": 9.41
+      },
+      {
+        "t0": 9.64,
+        "t1": 18.22
+      },
+      {
+        "t0": 18.32,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.56,
+    "position_rank_pct": 18.52,
+    "position_role": "deep",
+    "ball_control_pct": 3.38,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 8.24,
+    "field_control_deep_pct": 87.7,
+    "movement_control_pct": 92.57,
+    "pressure_control_pct": 87.7,
+    "feedback": [
+      "You play deeper than most teammates. Look for earlier forward support runs.",
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "You are among the deepest players in this window. Offer a nearby support option.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "You spend most of your time deep. Step in to support the next pass when safe.",
+      "Movement control is high. Maintain your scanning so runs are timed.",
+      "Pressure control is high. Use that stability to help the team reset."
+    ],
+    "formatted_feedback": "I noticed You play deeper than most teammates. Look for earlier forward support runs. from 10.44 second video and this is my feedback: You play deeper than most teammates. Look for earlier forward support runs. High movement is recorded in this window. Keep your movement quality consistent. Strong maximum speed is recorded. Use that speed to create separation in similar moments. You are among the deepest players in this window. Offer a nearby support option. Ball control percentage is low. Look for small check-ins to get a touch. You spend most of your time deep. Step in to support the next pass when safe. Movement control is high. Maintain your scanning so runs are timed. Pressure control is high. Use that stability to help the team reset. (control%: ball=3.38, field_adv=0.0, field_mid=8.24, field_deep=87.7, movement=92.57, pressure=87.7)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "3.38%",
+        "movement": "Avg Speed: 8.73 km/h; Max Speed: 41.73 km/h; Top Speed Time: 12.18 s",
+        "pressure_context": "Pressure Control: 87.7%; Field Control Deep: 87.7%"
+      },
+      "insights": [
+        {
+          "title": "Ineffective Ball Control",
+          "what_happened": "The player showcased a low ball control percentage of 3.38%, indicating a struggle in maintaining possession during play.",
+          "why_it_matters": "Effective ball control is crucial for a player in a deep role, as it directly impacts the ability to transition from defense to attack and maintain possession under pressure.",
+          "how_to_improve": [
+            "Practice dribbling under pressure",
+            "Incorporate tight-space passing drills",
+            "Use agility training to enhance footwork"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession",
+            "transition"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "3.38%"
+          }
+        },
+        {
+          "title": "Field Control Proficiency",
+          "what_happened": "The player exhibited strong field control, particularly in deep areas with a control percentage of 87.7%.",
+          "why_it.matters": "This level of field control indicates the player's ability to influence play from a defensive standpoint, helping the team maintain shape and limit opposition attacks.",
+          "how_to_improve": [
+            "Enhance communication with defensive teammates",
+            "Study positioning strategies",
+            "Continue focusing on maintaining a deep presence"
+          ],
+          "technical_terms_used": [
+            "field control",
+            "defensive shape",
+            "team structure"
+          ],
+          "evidence_used": {
+            "field_control_deep_pct": "87.7%"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Improve ball control under pressure to aid in possession.",
+        "next_step": "Implement targeted drills focusing on dribbling and tight-space play in upcoming training sessions.",
+        "success_indicator": "Increase ball control percentage in training assessments to above 10%."
+      }
+    }
+  },
+  {
+    "player_id": 15,
+    "team": null,
+    "frames_present": 727,
+    "possession_frames": 18,
+    "possession_pct_of_present": 2.48,
+    "possession_pct_of_total": 3.59,
+    "distance_m": 64.65,
+    "avg_speed_kmh": 7.86,
+    "max_speed_kmh": 45.96,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 10.88,
+        "t1": 11.44
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 4.77
+      },
+      {
+        "t0": 4.87,
+        "t1": 6.81
+      },
+      {
+        "t0": 7.04,
+        "t1": 8.21
+      },
+      {
+        "t0": 8.44,
+        "t1": 9.44
+      },
+      {
+        "t0": 9.54,
+        "t1": 10.54
+      },
+      {
+        "t0": 10.61,
+        "t1": 12.05
+      },
+      {
+        "t0": 12.15,
+        "t1": 18.69
+      },
+      {
+        "t0": 18.75,
+        "t1": 20.72
+      },
+      {
+        "t0": 20.85,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 23.97,
+    "position_rank_pct": 48.15,
+    "position_role": "mid",
+    "ball_control_pct": 2.48,
+    "field_control_adv_pct": 32.19,
+    "field_control_mid_pct": 61.49,
+    "field_control_deep_pct": 6.33,
+    "movement_control_pct": 95.19,
+    "pressure_control_pct": 6.33,
+    "feedback": [
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed Strong maximum speed is recorded. Use that speed to create separation in similar moments. from 10.88 second video and this is my feedback: Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=2.48, field_adv=32.19, field_mid=61.49, field_deep=6.33, movement=95.19, pressure=6.33)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "Ball control percentage at 2.48%, indicating minimal effective involvement with the ball.",
+        "movement": "Average speed of 7.86 km/h and a maximum speed of 45.96 km/h reflect overall mobility, but the player spent only 23.97 seconds in presence.",
+        "pressure_context": "Pressure control percentage stands at 6.33%, showing limited ability to manage pressure situations."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control",
+          "what_happened": "The player showed very low ball control with a percentage of 2.48%, indicating ineffective engagement during possession.",
+          "why_it_matters": "Effective ball control is crucial for a midfielder to maintain possession and create opportunities.",
+          "how_to_improve": [
+            "Increase practice on dribbling under pressure",
+            "Focus on first touch drills",
+            "Enhance decision-making in possession"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "2.48%"
+          }
+        },
+        {
+          "title": "Presence Duration Insights",
+          "what_happened": "Player had a total presence time of 23.97 seconds across multiple windows, suggesting limited engagement on the field.",
+          "why_it.matters": "A midfielder needs to maximize presence to influence the game, both offensively and defensively.",
+          "how_to_improve": [
+            "Increase fitness levels to sustain longer presence",
+            "Work on recognition of positioning opportunities",
+            "Develop spatial awareness"
+          ],
+          "technical_terms_used": [
+            "presence windows",
+            "field control"
+          ],
+          "evidence_used": {
+            "presence_total_s": "23.97"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control and presence in the game.",
+        "next_step": "Incorporate targeted drills focused on maintaining possession and increasing movement efficiency during practice.",
+        "success_indicator": "Improvement in ball control percentage and increased presence time during matches."
+      }
+    }
+  },
+  {
+    "player_id": 19,
+    "team": null,
+    "frames_present": 728,
+    "possession_frames": 16,
+    "possession_pct_of_present": 2.2,
+    "possession_pct_of_total": 3.19,
+    "distance_m": 31.82,
+    "avg_speed_kmh": 6.8,
+    "max_speed_kmh": 27.43,
+    "top_speed_time_s": 13.51,
+    "possession_windows_s": [
+      {
+        "t0": 21.76,
+        "t1": 22.26
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 4.84
+      },
+      {
+        "t0": 4.97,
+        "t1": 5.21
+      },
+      {
+        "t0": 5.34,
+        "t1": 8.01
+      },
+      {
+        "t0": 8.11,
+        "t1": 10.04
+      },
+      {
+        "t0": 10.11,
+        "t1": 12.31
+      },
+      {
+        "t0": 12.38,
+        "t1": 12.38
+      },
+      {
+        "t0": 12.65,
+        "t1": 13.08
+      },
+      {
+        "t0": 13.28,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.02,
+    "position_rank_pct": 66.67,
+    "position_role": "advanced",
+    "ball_control_pct": 2.2,
+    "field_control_adv_pct": 39.29,
+    "field_control_mid_pct": 18.13,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 55.49,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 21.76 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. (control%: ball=2.2, field_adv=39.29, field_mid=18.13, field_deep=0.0, movement=55.49, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "2.2%",
+        "movement": "Average speed of 6.8 km/h with a maximum speed of 27.43 km/h over a top speed time of 13.51 seconds.",
+        "pressure_context": "Pressure control percentage is 0.0%, indicating a lack of engagement in defensive pressure situations."
+      },
+      "insights": [
+        {
+          "title": "Lack of Ball Control",
+          "what_happened": "The player demonstrated a very low ball control percentage at 2.2%, suggesting difficulty in maintaining possession during play.",
+          "why_it_matters": "Consistent ball control is essential for an advanced position, as it directly affects a player's ability to create scoring opportunities or transition play effectively.",
+          "how_to_improve": [
+            "Focus on dribbling drills to enhance ball security.",
+            "Engage in possession-based training to improve decision-making under pressure.",
+            "Incorporate small-sided games to increase ball touches and control scenarios."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession",
+            "advanced position"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "2.2%"
+          }
+        },
+        {
+          "title": "Movement Dynamics",
+          "what_happened": "The player has a significant maximum speed of 27.43 km/h, with a high top speed duration of 13.51 seconds but maintains a low average speed of 6.8 km/h.",
+          "why_it.matters": "This discrepancy indicates that while the player has explosive speed potential, they may not be utilizing it effectively within play, leading to less impactful contributions.",
+          "how_to_improve": [
+            "Work on improving average speed through interval sprints during training.",
+            "Integrate acceleration drills to enhance the transition from lower to higher speeds during matches.",
+            "Encourage strategic runs to better utilize top speed in attacking scenarios."
+          ],
+          "technical_terms_used": [
+            "maximum speed",
+            "average speed",
+            "movement dynamics"
+          ],
+          "evidence_used": {
+            "max_speed_kmh": "27.43",
+            "avg_speed_kmh": "6.8"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control and increase average movement speed during play.",
+        "next_step": "Implement targeted training sessions aimed at improving dribbling and movement efficiency.",
+        "success_indicator": "A measurable increase in ball control percentage and average speed in upcoming matches."
+      }
+    }
+  },
+  {
+    "player_id": 5,
+    "team": null,
+    "frames_present": 748,
+    "possession_frames": 13,
+    "possession_pct_of_present": 1.74,
+    "possession_pct_of_total": 2.59,
+    "distance_m": 71.79,
+    "avg_speed_kmh": 8.29,
+    "max_speed_kmh": 33.2,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 22.49,
+        "t1": 22.89
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 7.51
+      },
+      {
+        "t0": 7.57,
+        "t1": 18.28
+      },
+      {
+        "t0": 18.35,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.86,
+    "position_rank_pct": 59.26,
+    "position_role": "mid",
+    "ball_control_pct": 1.74,
+    "field_control_adv_pct": 15.78,
+    "field_control_mid_pct": 84.22,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 99.87,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed High movement is recorded in this window. Keep your movement quality consistent. from 22.49 second video and this is my feedback: High movement is recorded in this window. Keep your movement quality consistent. Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=1.74, field_adv=15.78, field_mid=84.22, field_deep=0.0, movement=99.87, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "1.74% indicates minimal impact on possession efficiency.",
+        "movement": "Avg speed of 8.29 km/h and top speed of 33.2 km/h showcase a capacity for burst acceleration, though average movement speed is low.",
+        "pressure_context": "0.0% pressure control suggests inability to handle defensive pressure effectively."
+      },
+      "insights": [
+        {
+          "title": "Low Ball Control Efficiency",
+          "what_happened": "The player's ball control percentage is recorded at 1.74%, indicating a struggle to maintain possession during play.",
+          "why_it_matters": "Effective ball control is crucial for a midfielder to dictate tempo and create opportunities, especially in transitional phases.",
+          "how_to_improve": [
+            "Increase training on close ball control drills",
+            "Incorporate small-sided games to enhance decision-making under pressure",
+            "Focus on technical footwork to improve handling"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "1.74"
+          }
+        },
+        {
+          "title": "Effective Movement in Specific Contexts",
+          "what_happened": "The player achieved a maximum speed of 33.2 km/h, although the average movement speed was relatively low at 8.29 km/h.",
+          "why_it.matters": "While the player can sprint effectively, maintaining dynamic movement during gameplay is necessary for a midfielder's role.",
+          "how_to_improve": [
+            "Implement agility drills to increase average speed",
+            "Work on positioning to exploit spaces effectively",
+            "Enhance stamina training to sustain higher speeds"
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "maximum speed"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "8.29",
+            "max_speed_kmh": "33.2"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Develop ball control under pressure and improve average movement speed.",
+        "next_step": "Schedule dedicated practice sessions targeting ball control techniques and include speed-enhancing drills.",
+        "success_indicator": "Improvement in ball control percentage above 5% and a noticeable increase in average speed metrics."
+      }
+    }
+  },
+  {
+    "player_id": 22,
+    "team": null,
+    "frames_present": 712,
+    "possession_frames": 10,
+    "possession_pct_of_present": 1.4,
+    "possession_pct_of_total": 2.0,
+    "distance_m": 17.99,
+    "avg_speed_kmh": 10.09,
+    "max_speed_kmh": 21.78,
+    "top_speed_time_s": 13.68,
+    "possession_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 0.2
+      },
+      {
+        "t0": 12.18,
+        "t1": 12.21
+      },
+      {
+        "t0": 12.35,
+        "t1": 12.35
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 0.27
+      },
+      {
+        "t0": 0.37,
+        "t1": 0.4
+      },
+      {
+        "t0": 0.6,
+        "t1": 4.24
+      },
+      {
+        "t0": 4.64,
+        "t1": 7.44
+      },
+      {
+        "t0": 7.54,
+        "t1": 9.64
+      },
+      {
+        "t0": 9.81,
+        "t1": 11.78
+      },
+      {
+        "t0": 11.85,
+        "t1": 11.85
+      },
+      {
+        "t0": 12.01,
+        "t1": 20.45
+      },
+      {
+        "t0": 20.79,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 23.45,
+    "position_rank_pct": 88.89,
+    "position_role": "advanced",
+    "ball_control_pct": 1.4,
+    "field_control_adv_pct": 24.72,
+    "field_control_mid_pct": 0.0,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 21.63,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "You are among the most advanced players in this window. Stay available without drifting too high.",
+      "Ball control percentage is low. Look for small check-ins to get a touch."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 0.0 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. High movement is recorded in this window. Keep your movement quality consistent. You are among the most advanced players in this window. Stay available without drifting too high. Ball control percentage is low. Look for small check-ins to get a touch. (control%: ball=1.4, field_adv=24.72, field_mid=0.0, field_deep=0.0, movement=21.63, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "1.4% indicates limited effectiveness in handling the ball.",
+        "movement": "Average speed of 10.09 km/h with a maximum speed of 21.78 km/h suggests a decent capability for quick bursts, but overall movement may not be consistent.",
+        "pressure_context": "0% pressure control indicates an inability to respond effectively under pressure."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Handling Effectiveness",
+          "what_happened": "The player demonstrated a ball control percentage of 1.4%, indicating they struggled to maintain possession effectively.",
+          "why_it_matters": "Poor ball control can lead to turnovers, reducing the team's ability to sustain attacks and increasing opposition opportunities.",
+          "how_to_improve": [
+            "Increase ball control through focused drills on dribbling under pressure.",
+            "Incorporate possession games to enhance handling in tight situations.",
+            "Study and practice quick decision-making in ball retention."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "1.4"
+          }
+        },
+        {
+          "title": "Inconsistent Movement Across the Field",
+          "what_happened": "With an average speed of 10.09 km/h and maximum speed reaching 21.78 km/h, the player's movement suggests ability for fast sprints but not consistent pace.",
+          "why_it.matters": "In soccer, sustained movement and the ability to transition quickly are critical for both offensive positioning and defending against counterattacks.",
+          "how_to_improve": [
+            "Engage in endurance training to maintain speed over longer periods.",
+            "Work on tactical movement to improve positioning without ball.",
+            "Incorporate interval training to blend speed and stamina."
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "max speed"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "10.09",
+            "max_speed_kmh": "21.78"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhancing ball control and overall movement consistency.",
+        "next_step": "Implement tailored training sessions targeting both ball handling under pressure and movement patterns.",
+        "success_indicator": "Improvement in ball control percentage and sustained movement metrics during matches."
+      }
+    }
+  },
+  {
+    "player_id": 1,
+    "team": null,
+    "frames_present": 750,
+    "possession_frames": 6,
+    "possession_pct_of_present": 0.8,
+    "possession_pct_of_total": 1.2,
+    "distance_m": 55.99,
+    "avg_speed_kmh": 6.46,
+    "max_speed_kmh": 36.05,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 22.29,
+        "t1": 22.46
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.99,
+    "position_rank_pct": 74.07,
+    "position_role": "advanced",
+    "ball_control_pct": 0.8,
+    "field_control_adv_pct": 94.8,
+    "field_control_mid_pct": 5.2,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 99.87,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "You spend most of your time advanced. Stay connected to avoid getting isolated.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 22.29 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. You spend most of your time advanced. Stay connected to avoid getting isolated. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=0.8, field_adv=94.8, field_mid=5.2, field_deep=0.0, movement=99.87, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "80% ball control indicates a strong ability to retain possession under pressure.",
+        "movement": "Average speed of 6.46 km/h with a top speed of 36.05 km/h shows potential for explosive movement.",
+        "pressure_context": "0% pressure control suggests a lack of ability to handle defensive pressure effectively."
+      },
+      "insights": [
+        {
+          "title": "Strong Possession Retention",
+          "what_happened": "The player maintained an 80% ball control percentage during their presence on the field.",
+          "why_it_matters": "This high level of ball control allows the player to effectively retain possession, contributing to team play by minimizing turnovers.",
+          "how_to_improve": [
+            "Implement drills focusing on dribbling under pressure",
+            "Enhance decision-making during high-pressure situations",
+            "Increase awareness of surrounding players"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "0.8"
+          }
+        },
+        {
+          "title": "Explosive Speed Potential",
+          "what_happened": "The player recorded a maximum speed of 36.05 km/h over a 12.18 seconds top speed duration.",
+          "why_it_matters": "This indicates the player has the physical capability to make quick sprints, crucial for offensive plays and defensive recoveries.",
+          "how_to_improve": [
+            "Focus on sprint training to enhance acceleration and top speed",
+            "Engage in agility drills to improve change of direction while maintaining speed",
+            "Incorporate strength training to support speed endurance"
+          ],
+          "technical_terms_used": [
+            "top speed",
+            "acceleration"
+          ],
+          "evidence_used": {
+            "max_speed_kmh": "36.05",
+            "top_speed_time_s": "12.18"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhancing ball control under pressure and developing sprinting technique.",
+        "next_step": "Introduce targeted training sessions addressing ball control and speed drills weekly.",
+        "success_indicator": "Improvement in ball control percentage and sprinting times during drills."
+      }
+    }
+  },
+  {
+    "player_id": 132,
+    "team": null,
+    "frames_present": 447,
+    "possession_frames": 3,
+    "possession_pct_of_present": 0.67,
+    "possession_pct_of_total": 0.6,
+    "distance_m": 46.66,
+    "avg_speed_kmh": 10.91,
+    "max_speed_kmh": 60.91,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 10.74,
+        "t1": 10.81
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 9.71,
+        "t1": 10.64
+      },
+      {
+        "t0": 10.74,
+        "t1": 11.31
+      },
+      {
+        "t0": 11.38,
+        "t1": 12.51
+      },
+      {
+        "t0": 12.58,
+        "t1": 16.78
+      },
+      {
+        "t0": 16.95,
+        "t1": 18.99
+      },
+      {
+        "t0": 19.09,
+        "t1": 20.32
+      },
+      {
+        "t0": 20.42,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 14.67,
+    "position_rank_pct": 14.81,
+    "position_role": "deep",
+    "ball_control_pct": 0.67,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 20.13,
+    "field_control_deep_pct": 70.02,
+    "movement_control_pct": 82.33,
+    "pressure_control_pct": 70.02,
+    "feedback": [
+      "You play deeper than most teammates. Look for earlier forward support runs.",
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "You are among the deepest players in this window. Offer a nearby support option.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "You spend most of your time deep. Step in to support the next pass when safe.",
+      "Movement control is high. Maintain your scanning so runs are timed.",
+      "Pressure control is high. Use that stability to help the team reset."
+    ],
+    "formatted_feedback": "I noticed You play deeper than most teammates. Look for earlier forward support runs. from 10.74 second video and this is my feedback: You play deeper than most teammates. Look for earlier forward support runs. High movement is recorded in this window. Keep your movement quality consistent. Strong maximum speed is recorded. Use that speed to create separation in similar moments. You are among the deepest players in this window. Offer a nearby support option. Ball control percentage is low. Look for small check-ins to get a touch. You spend most of your time deep. Step in to support the next pass when safe. Movement control is high. Maintain your scanning so runs are timed. Pressure control is high. Use that stability to help the team reset. (control%: ball=0.67, field_adv=0.0, field_mid=20.13, field_deep=70.02, movement=82.33, pressure=70.02)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "67% possession success indicates a strong ability to retain the ball.",
+        "movement": "Average speed of 10.91 km/h with a maximum speed reaching 60.91 km/h suggests good overall mobility.",
+        "pressure_context": "Presence total of 14.67 seconds in various windows indicates sustained engagement in the play."
+      },
+      "insights": [
+        {
+          "title": "Effective Ball Retention",
+          "what_happened": "The player achieved a ball control success rate of 67%.",
+          "why_it_matters": "High ball control percentage is crucial for maintaining possession and facilitating team play, especially in a deep position role.",
+          "how_to_improve": [
+            "Continue to practice close ball control under pressure",
+            "Incorporate dribbling drills to enhance agility",
+            "Engage in situational play to improve decision-making in tight spaces"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession retention"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "67%"
+          }
+        },
+        {
+          "title": "Strong Movement Capability",
+          "what_happened": "The player averaged a speed of 10.91 km/h and reached a maximum speed of 60.91 km/h.",
+          "why_it_matters": "This movement capability allows the player to cover ground effectively and respond dynamically during plays, aiding in both offensive and defensive actions.",
+          "how_to_improve": [
+            "Focus on sprinting drills to improve maximum speed",
+            "Incorporate agility exercises to enhance quick changes of direction",
+            "Use interval training to build endurance at varying speeds"
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "maximum speed"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "10.91",
+            "max_speed_kmh": "60.91"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control and movement agility.",
+        "next_step": "Implement targeted training sessions focusing on ball skills under pressure and speed drills.",
+        "success_indicator": "Improvement in ball control percentage and speed metrics in subsequent evaluations."
+      }
+    }
+  },
+  {
+    "player_id": 8,
+    "team": null,
+    "frames_present": 728,
+    "possession_frames": 2,
+    "possession_pct_of_present": 0.27,
+    "possession_pct_of_total": 0.4,
+    "distance_m": 53.44,
+    "avg_speed_kmh": 7.92,
+    "max_speed_kmh": 52.94,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [
+      {
+        "t0": 11.48,
+        "t1": 11.51
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 5.27
+      },
+      {
+        "t0": 5.41,
+        "t1": 5.87
+      },
+      {
+        "t0": 5.94,
+        "t1": 6.37
+      },
+      {
+        "t0": 6.47,
+        "t1": 7.01
+      },
+      {
+        "t0": 7.14,
+        "t1": 7.94
+      },
+      {
+        "t0": 8.11,
+        "t1": 9.01
+      },
+      {
+        "t0": 9.18,
+        "t1": 10.68
+      },
+      {
+        "t0": 10.74,
+        "t1": 11.08
+      },
+      {
+        "t0": 11.14,
+        "t1": 11.34
+      },
+      {
+        "t0": 11.41,
+        "t1": 11.85
+      }
+    ],
+    "presence_total_s": 23.89,
+    "position_rank_pct": 55.56,
+    "position_role": "mid",
+    "ball_control_pct": 0.27,
+    "field_control_adv_pct": 36.26,
+    "field_control_mid_pct": 45.47,
+    "field_control_deep_pct": 0.41,
+    "movement_control_pct": 79.12,
+    "pressure_control_pct": 0.41,
+    "feedback": [
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed Strong maximum speed is recorded. Use that speed to create separation in similar moments. from 11.48 second video and this is my feedback: Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=0.27, field_adv=36.26, field_mid=45.47, field_deep=0.41, movement=79.12, pressure=0.41)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "27%",
+        "movement": "79.12% movement control indicates strong spatial awareness and positioning.",
+        "pressure_context": "41% pressure control suggests areas to improve in high-pressure situations."
+      },
+      "insights": [
+        {
+          "title": "Average Speed and Distances Covered",
+          "what_happened": "The player recorded an average speed of 7.92 km/h and covered a distance of 53.44 meters.",
+          "why_it_matters": "Understanding the player's speed and distance provides insight into their physical capability to contribute to transitions and support team dynamics.",
+          "how_to_improve": [
+            "Increase average speed through agility training",
+            "Enhance aerobic capacity to cover more distance",
+            "Incorporate interval training for speed bursts."
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "distance covered"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "7.92",
+            "distance_m": "53.44"
+          }
+        },
+        {
+          "title": "Presence Across the Field",
+          "what_happened": "The player has a presence total of 23.89 seconds, with eight distinct presence windows.",
+          "why_it_matters": "Frequent presence on the field indicates significant involvement in the game; however, managing presence in critical areas can further enhance impact.",
+          "how_to_improve": [
+            "Refine positioning to increase involvement during possession.",
+            "Focus on decision-making during crucial moments.",
+            "Train to maintain presence in the opposing half."
+          ],
+          "technical_terms_used": [
+            "presence total",
+            "presence windows"
+          ],
+          "evidence_used": {
+            "presence_total_s": "23.89",
+            "presence_windows_s": "8"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control and pressure management.",
+        "next_step": "Implement targeted ball control drills focusing on tight spaces and under pressure.",
+        "success_indicator": "Improvement in ball control percentage and increased effectiveness during pressure scenarios."
+      }
+    }
+  },
+  {
+    "player_id": 120,
+    "team": null,
+    "frames_present": 512,
+    "possession_frames": 2,
+    "possession_pct_of_present": 0.39,
+    "possession_pct_of_total": 0.4,
+    "distance_m": 23.32,
+    "avg_speed_kmh": 7.45,
+    "max_speed_kmh": 31.94,
+    "top_speed_time_s": 16.18,
+    "possession_windows_s": [
+      {
+        "t0": 11.75,
+        "t1": 11.78
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 6.87,
+        "t1": 8.98
+      },
+      {
+        "t0": 9.51,
+        "t1": 10.84
+      },
+      {
+        "t0": 10.94,
+        "t1": 11.78
+      },
+      {
+        "t0": 11.85,
+        "t1": 12.11
+      },
+      {
+        "t0": 12.18,
+        "t1": 12.55
+      },
+      {
+        "t0": 12.61,
+        "t1": 12.98
+      },
+      {
+        "t0": 13.05,
+        "t1": 15.42
+      },
+      {
+        "t0": 15.48,
+        "t1": 16.22
+      },
+      {
+        "t0": 16.28,
+        "t1": 16.62
+      },
+      {
+        "t0": 16.68,
+        "t1": 16.92
+      }
+    ],
+    "presence_total_s": 16.62,
+    "position_rank_pct": 37.04,
+    "position_role": "mid",
+    "ball_control_pct": 0.39,
+    "field_control_adv_pct": 9.57,
+    "field_control_mid_pct": 31.64,
+    "field_control_deep_pct": 11.52,
+    "movement_control_pct": 50.0,
+    "pressure_control_pct": 11.52,
+    "feedback": [
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch."
+    ],
+    "formatted_feedback": "I noticed Strong maximum speed is recorded. Use that speed to create separation in similar moments. from 11.75 second video and this is my feedback: Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. (control%: ball=0.39, field_adv=9.57, field_mid=31.64, field_deep=11.52, movement=50.0, pressure=11.52)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "39%",
+        "movement": "Average speed of 7.45 km/h, max speed of 31.94 km/h over a distance of 23.32 m.",
+        "pressure_context": "Pressure control percentage is low at 11.52%."
+      },
+      "insights": [
+        {
+          "title": "Ball Control Under Pressure",
+          "what_happened": "The player has a ball control percentage of 39%, indicating a moderate level of proficiency in managing the ball.",
+          "why_it_matters": "Strong ball control is essential for maintaining possession and creating opportunities, especially in tight spaces where pressure is high.",
+          "how_to_improve": [
+            "Practice dribbling under pressure",
+            "Engage in small-sided games to enhance ball control",
+            "Incorporate ball control drills that simulate game scenarios"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession",
+            "pressure"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "0.39",
+            "pressure_control_pct": "11.52"
+          }
+        },
+        {
+          "title": "Movement and Speed Analysis",
+          "what_happened": "The player demonstrates a maximum speed of 31.94 km/h, but the average speed remains relatively low at 7.45 km/h.",
+          "why_it_matters": "The discrepancy between average and maximum speed suggests that while the player is capable of sprinting, they may not be utilizing that speed effectively during play, especially in offensive situations.",
+          "how_to_improve": [
+            "Increase overall fitness to sustain higher average speeds",
+            "Focus on transitions from slower to faster movements",
+            "Work on reading the game to know when to accelerate"
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "maximum speed",
+            "movement"
+          ],
+          "evidence_used": {
+            "max_speed_kmh": "31.94",
+            "avg_speed_kmh": "7.45"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control and improve movement dynamics.",
+        "next_step": "Incorporate specific drills to address ball control under pressure and sprinting efficiency.",
+        "success_indicator": "Increased ball control percentage above 40% and a rise in average speed during matches."
+      }
+    }
+  },
+  {
+    "player_id": 156,
+    "team": null,
+    "frames_present": 398,
+    "possession_frames": 2,
+    "possession_pct_of_present": 0.5,
+    "possession_pct_of_total": 0.4,
+    "distance_m": 11.47,
+    "avg_speed_kmh": 9.42,
+    "max_speed_kmh": 19.03,
+    "top_speed_time_s": 17.02,
+    "possession_windows_s": [
+      {
+        "t0": 12.55,
+        "t1": 12.58
+      }
+    ],
+    "presence_windows_s": [
+      {
+        "t0": 11.71,
+        "t1": 18.92
+      },
+      {
+        "t0": 18.99,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 13.21,
+    "position_rank_pct": 92.59,
+    "position_role": "advanced",
+    "ball_control_pct": 0.5,
+    "field_control_adv_pct": 30.4,
+    "field_control_mid_pct": 0.0,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 26.13,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "You are among the most advanced players in this window. Stay available without drifting too high.",
+      "Ball control percentage is low. Look for small check-ins to get a touch."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 12.55 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. High movement is recorded in this window. Keep your movement quality consistent. You are among the most advanced players in this window. Stay available without drifting too high. Ball control percentage is low. Look for small check-ins to get a touch. (control%: ball=0.5, field_adv=30.4, field_mid=0.0, field_deep=0.0, movement=26.13, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "50%",
+        "movement": "Average speed of 9.42 km/h, with a maximum speed of 19.03 km/h over a presence total of 13.21 seconds.",
+        "pressure_context": "0% pressure control indicates lack of engagement in defensive pressure scenarios."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control Under Pressure",
+          "what_happened": "The player has a ball control percentage of 50%, suggesting a moderate ability to retain possession when challenged.",
+          "why_it_matters": "Improving ball control in pressured situations is vital for maintaining possession and facilitating play, especially in an advanced position.",
+          "how_to_improve": [
+            "Practice under pressure scenarios",
+            "Engage in small-sided games to enhance decision-making",
+            "Incorporate ball retention drills with defenders"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "pressure scenarios"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "50%"
+          }
+        },
+        {
+          "title": "Presence and Movement on the Field",
+          "what_happened": "The player had a total presence time of 13.21 seconds across multiple windows, indicating intermittent involvement in the game.",
+          "why_it_matters": "High presence time (92.59% rank) is positive, but consistent involvement can enhance overall impact and contribution to the team's success.",
+          "how_to_improve": [
+            "Increase overall movement activity during matches",
+            "Enhance positioning to receive the ball more frequently",
+            "Work on making dynamic runs to create opportunities"
+          ],
+          "technical_terms_used": [
+            "presence windows",
+            "movement control"
+          ],
+          "evidence_used": {
+            "presence_total_s": "13.21"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhancing technical skill under pressure and maximizing field presence.",
+        "next_step": "Conduct targeted training sessions focused on ball control and movement patterns.",
+        "success_indicator": "Improvement in ball control percentage and increased effective presence time during future games."
+      }
+    }
+  },
+  {
+    "player_id": 14,
+    "team": null,
+    "frames_present": 748,
+    "possession_frames": 0,
+    "possession_pct_of_present": 0.0,
+    "possession_pct_of_total": 0.0,
+    "distance_m": 64.7,
+    "avg_speed_kmh": 7.44,
+    "max_speed_kmh": 32.23,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 23.46
+      },
+      {
+        "t0": 23.52,
+        "t1": 23.52
+      },
+      {
+        "t0": 23.59,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.86,
+    "position_rank_pct": 22.22,
+    "position_role": "deep",
+    "ball_control_pct": 0.0,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 12.3,
+    "field_control_deep_pct": 87.7,
+    "movement_control_pct": 99.2,
+    "pressure_control_pct": 87.7,
+    "feedback": [
+      "You play deeper than most teammates. Look for earlier forward support runs.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "You spend most of your time deep. Step in to support the next pass when safe.",
+      "Movement control is high. Maintain your scanning so runs are timed.",
+      "Pressure control is high. Use that stability to help the team reset."
+    ],
+    "formatted_feedback": "I noticed You play deeper than most teammates. Look for earlier forward support runs. from 0.0 second video and this is my feedback: You play deeper than most teammates. Look for earlier forward support runs. Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. You spend most of your time deep. Step in to support the next pass when safe. Movement control is high. Maintain your scanning so runs are timed. Pressure control is high. Use that stability to help the team reset. (control%: ball=0.0, field_adv=0.0, field_mid=12.3, field_deep=87.7, movement=99.2, pressure=87.7)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "0.0% ball control indicates a lack of successful touches or dribbles on the ball.",
+        "movement": "Average speed of 7.44 km/h with a maximum speed of 32.23 km/h suggests capability for explosive movement, despite limited total distance covered (64.7 meters).",
+        "pressure_context": "87.7% pressure control indicates strong positioning and awareness in deep zones, mitigating pressure effectively."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Engagement",
+          "what_happened": "The player demonstrated 0.0% ball control, indicating no successful interactions with the ball during the observed time.",
+          "why_it_matters": "Ball control is crucial for maintaining possession and contributing to offensive plays. A player with no successful ball control is not providing offensive support.",
+          "how_to_improve": [
+            "Develop passing skills through targeted drills.",
+            "Increase touch frequency via small-sided games.",
+            "Enhance decision-making under pressure."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession",
+            "offensive plays"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "0.0"
+          }
+        },
+        {
+          "title": "Effective Movement Control",
+          "what_happened": "The player maintained a high movement control percentage of 99.2%, highlighting excellent positioning and spacing during play.",
+          "why_it.matters": "High movement control allows the player to support teammates defensively and position strategically, even without direct ball engagement.",
+          "how_to_improve": [
+            "Incorporate fitness training to sustain high movement during longer durations.",
+            "Practice positioning relative to teammates to enhance spatial awareness."
+          ],
+          "technical_terms_used": [
+            "movement control",
+            "positioning",
+            "spacing"
+          ],
+          "evidence_used": {
+            "movement_control_pct": "99.2"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Improve ball control and possession techniques.",
+        "next_step": "Engage the player in targeted ball control exercises and small-sided games to increase engagement with the ball.",
+        "success_indicator": "Improvement in ball control percentage and successful passing actions observed in future sessions."
+      }
+    }
+  },
+  {
+    "player_id": 34,
+    "team": null,
+    "frames_present": 734,
+    "possession_frames": 0,
+    "possession_pct_of_present": 0.0,
+    "possession_pct_of_total": 0.0,
+    "distance_m": 58.94,
+    "avg_speed_kmh": 7.85,
+    "max_speed_kmh": 26.32,
+    "top_speed_time_s": 12.18,
+    "possession_windows_s": [],
+    "presence_windows_s": [
+      {
+        "t0": 0.47,
+        "t1": 0.47
+      },
+      {
+        "t0": 0.53,
+        "t1": 0.53
+      },
+      {
+        "t0": 0.6,
+        "t1": 24.99
+      }
+    ],
+    "presence_total_s": 24.39,
+    "position_rank_pct": 81.48,
+    "position_role": "advanced",
+    "ball_control_pct": 0.0,
+    "field_control_adv_pct": 77.93,
+    "field_control_mid_pct": 11.04,
+    "field_control_deep_pct": 0.82,
+    "movement_control_pct": 87.74,
+    "pressure_control_pct": 0.82,
+    "feedback": [
+      "You stay high relative to teammates. Check timing of runs to stay onside and available.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "You are among the most advanced players in this window. Stay available without drifting too high.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "You spend most of your time advanced. Stay connected to avoid getting isolated.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed You stay high relative to teammates. Check timing of runs to stay onside and available. from 0.47 second video and this is my feedback: You stay high relative to teammates. Check timing of runs to stay onside and available. Strong maximum speed is recorded. Use that speed to create separation in similar moments. You are among the most advanced players in this window. Stay available without drifting too high. Ball control percentage is low. Look for small check-ins to get a touch. You spend most of your time advanced. Stay connected to avoid getting isolated. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=0.0, field_adv=77.93, field_mid=11.04, field_deep=0.82, movement=87.74, pressure=0.82)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "0.0% indicating no successful ball control actions within the given evidence window.",
+        "movement": "Average speed of 7.85 km/h with a top speed of 26.32 km/h showcased over 12.18 seconds period.",
+        "pressure_context": "Pressure control percentage is 0.82%, indicating minimal engagement with or response to defensive pressure."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Control",
+          "what_happened": "The player displayed a ball control percentage of 0.0%, indicating that there were no successful touches or possessions of the ball during the analyzed times.",
+          "why_it_matters": "Ball control is essential for advanced positions as it allows players to maintain possession and contribute to offensive build-up, which is crucial in match scenarios.",
+          "how_to_improve": [
+            "Increase training on first touches and ball retention under pressure",
+            "Incorporate small-sided games to enhance touch frequency",
+            "Focus on dribbling under defensive pressure"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "0.0"
+          }
+        },
+        {
+          "title": "Strong Movement Control",
+          "what_happened": "The player has a high movement control percentage at 87.74%, indicating effective spatial awareness and positioning on the field.",
+          "why_it.matters": "High movement control allows the player to react effectively in various situations and position themselves advantageously, providing tactical flexibility in transitions.",
+          "how_to_improve": [
+            "Continue to develop positioning drills during team training",
+            "Analyze movement patterns in game footage",
+            "Integrate agility drills to enhance response time"
+          ],
+          "technical_terms_used": [
+            "movement control",
+            "spatial awareness"
+          ],
+          "evidence_used": {
+            "movement_control_pct": "87.74"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhance ball control skills through targeted technical drills.",
+        "next_step": "Implement specific training sessions focused on ball control and pressure situations.",
+        "success_indicator": "Achieving a ball control percentage of 50% or higher in upcoming practices."
+      }
+    }
+  },
+  {
+    "player_id": 142,
+    "team": null,
+    "frames_present": 421,
+    "possession_frames": 0,
+    "possession_pct_of_present": 0.0,
+    "possession_pct_of_total": 0.0,
+    "distance_m": 36.17,
+    "avg_speed_kmh": 9.28,
+    "max_speed_kmh": 40.86,
+    "top_speed_time_s": 13.51,
+    "possession_windows_s": [],
+    "presence_windows_s": [
+      {
+        "t0": 10.48,
+        "t1": 10.84
+      },
+      {
+        "t0": 10.94,
+        "t1": 11.24
+      },
+      {
+        "t0": 11.31,
+        "t1": 11.61
+      },
+      {
+        "t0": 11.68,
+        "t1": 11.91
+      },
+      {
+        "t0": 11.98,
+        "t1": 12.21
+      },
+      {
+        "t0": 12.28,
+        "t1": 12.51
+      },
+      {
+        "t0": 12.58,
+        "t1": 13.15
+      },
+      {
+        "t0": 13.21,
+        "t1": 16.82
+      },
+      {
+        "t0": 16.95,
+        "t1": 23.39
+      },
+      {
+        "t0": 23.52,
+        "t1": 24.26
+      }
+    ],
+    "presence_total_s": 13.68,
+    "position_rank_pct": 33.33,
+    "position_role": "mid",
+    "ball_control_pct": 0.0,
+    "field_control_adv_pct": 20.67,
+    "field_control_mid_pct": 28.98,
+    "field_control_deep_pct": 33.73,
+    "movement_control_pct": 79.57,
+    "pressure_control_pct": 33.73,
+    "feedback": [
+      "High movement is recorded in this window. Keep your movement quality consistent.",
+      "Strong maximum speed is recorded. Use that speed to create separation in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is high. Maintain your scanning so runs are timed."
+    ],
+    "formatted_feedback": "I noticed High movement is recorded in this window. Keep your movement quality consistent. from 10.48 second video and this is my feedback: High movement is recorded in this window. Keep your movement quality consistent. Strong maximum speed is recorded. Use that speed to create separation in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is high. Maintain your scanning so runs are timed. (control%: ball=0.0, field_adv=20.67, field_mid=28.98, field_deep=33.73, movement=79.57, pressure=33.73)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "0.0% indicative of a lack of successful ball control actions.",
+        "movement": "Average speed of 9.28 km/h with a maximum speed of 40.86 km/h suggests potential for dynamic movement but requires better utilization.",
+        "pressure_context": "Field control metrics reveal weaknesses: 20.67% in advantage situations, 28.98% in midfield, and 33.73% in deeper positions."
+      },
+      "insights": [
+        {
+          "title": "Underutilization of Speed Potential",
+          "what_happened": "The player recorded a maximum speed of 40.86 km/h but maintained an average speed of only 9.28 km/h during presence windows.",
+          "why_it_matters": "This discrepancy indicates that the player is not effectively leveraging their speed during play, which can hinder their ability to create space or disrupt the opponent.",
+          "how_to_improve": [
+            "Engage in speed drills to enhance sprint utilization during match situations.",
+            "Focus on positioning to better exploit pace when opportunities arise.",
+            "Incorporate tactical training to recognize moments to accelerate."
+          ],
+          "technical_terms_used": [
+            "maximum speed",
+            "average speed",
+            "sprint utilization"
+          ],
+          "evidence_used": {
+            "max_speed_kmh": "40.86",
+            "avg_speed_kmh": "9.28"
+          }
+        },
+        {
+          "title": "Lack of Ball Control",
+          "what_happened": "The player had a ball control metric of 0.0%, indicating no successful ball control actions recorded.",
+          "why_it.matters": "Effective ball control is crucial for maintaining possession and creating opportunities; this absence limits the player's impact on the game.",
+          "how_to_improve": [
+            "Implement ball control exercises to enhance first touch and dribbling under pressure.",
+            "Increase practice in tight conditions to develop better control.",
+            "Participate in small-sided games to increase ball touches."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "first touch",
+            "dribbling under pressure"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "0.0"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhancing ball control and utilizing speed effectively.",
+        "next_step": "Schedule targeted training sessions focusing on ball skills and dynamic movements.",
+        "success_indicator": "A measurable improvement in ball control percentage and an increase in average speed during match scenarios."
+      }
+    }
+  },
+  {
+    "player_id": 4,
+    "team": null,
+    "frames_present": 351,
+    "possession_frames": 0,
+    "possession_pct_of_present": 0.0,
+    "possession_pct_of_total": 0.0,
+    "distance_m": 0.0,
+    "avg_speed_kmh": 0.0,
+    "max_speed_kmh": 0.0,
+    "top_speed_time_s": 3.6,
+    "possession_windows_s": [],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 11.41
+      },
+      {
+        "t0": 11.48,
+        "t1": 11.71
+      }
+    ],
+    "presence_total_s": 11.64,
+    "position_rank_pct": null,
+    "position_role": null,
+    "ball_control_pct": 0.0,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 0.0,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 0.0,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "Low movement is recorded in this window. Add one clear movement action in similar moments.",
+      "Maximum speed is low in this window. Add a short acceleration action in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is low. Add one clear movement action to create a new option."
+    ],
+    "formatted_feedback": "I noticed Low movement is recorded in this window. Add one clear movement action in similar moments. from 0.0 second video and this is my feedback: Low movement is recorded in this window. Add one clear movement action in similar moments. Maximum speed is low in this window. Add a short acceleration action in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is low. Add one clear movement action to create a new option. (control%: ball=0.0, field_adv=0.0, field_mid=0.0, field_deep=0.0, movement=0.0, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "0.0%",
+        "movement": "Average speed is 0.0 km/h and maximum speed is 0.0 km/h, indicating no active movement.",
+        "pressure_context": "Presence total of 11.64 seconds suggests minimal engagement in ball-related activities."
+      },
+      "insights": [
+        {
+          "title": "Limited Ball Engagement",
+          "what_happened": "The player exhibited a ball control percentage of 0.0% during the evidence window, indicating no successful ball control events.",
+          "why_it_matters": "Ball control is crucial for maintaining possession and influencing game flow; its absence hampers the team\u2019s offensive and defensive strategies.",
+          "how_to_improve": [
+            "Engage in technical drills focusing on ball control under pressure",
+            "Increase ball handling exercises in practice sessions",
+            "Participate in small-sided games to boost confidence with the ball"
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "possession",
+            "pressure"
+          ],
+          "evidence_used": {
+            "ball_control_pct": "0.0%"
+          }
+        },
+        {
+          "title": "Lack of Movement and Speed",
+          "what_happened": "Both average speed and maximum speed were recorded at 0.0 km/h, reflecting no movement during the monitored period.",
+          "why_it.matters": "Movement is critical for positioning and creating opportunities; without speed, a player cannot effectively contribute to either defensive or offensive phases.",
+          "how_to_improve": [
+            "Incorporate fitness and agility drills into training",
+            "Focus on improving sprinting mechanics through targeted exercises",
+            "Increase overall conditioning to enhance stamina"
+          ],
+          "technical_terms_used": [
+            "average speed",
+            "maximum speed",
+            "agility"
+          ],
+          "evidence_used": {
+            "avg_speed_kmh": "0.0",
+            "max_speed_kmh": "0.0"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhancing ball control and overall movement.",
+        "next_step": "Introduce specialized drills for ball control and speed development during training.",
+        "success_indicator": "Improved ball control percentage and increased average speed metrics in future evaluations."
+      }
+    }
+  },
+  {
+    "player_id": 10,
+    "team": null,
+    "frames_present": 526,
+    "possession_frames": 0,
+    "possession_pct_of_present": 0.0,
+    "possession_pct_of_total": 0.0,
+    "distance_m": 0.0,
+    "avg_speed_kmh": 0.0,
+    "max_speed_kmh": 0.0,
+    "top_speed_time_s": 3.6,
+    "possession_windows_s": [],
+    "presence_windows_s": [
+      {
+        "t0": 0.0,
+        "t1": 13.01
+      },
+      {
+        "t0": 13.08,
+        "t1": 17.55
+      }
+    ],
+    "presence_total_s": 17.48,
+    "position_rank_pct": null,
+    "position_role": null,
+    "ball_control_pct": 0.0,
+    "field_control_adv_pct": 0.0,
+    "field_control_mid_pct": 0.0,
+    "field_control_deep_pct": 0.0,
+    "movement_control_pct": 0.0,
+    "pressure_control_pct": 0.0,
+    "feedback": [
+      "Low movement is recorded in this window. Add one clear movement action in similar moments.",
+      "Maximum speed is low in this window. Add a short acceleration action in similar moments.",
+      "Ball control percentage is low. Look for small check-ins to get a touch.",
+      "Movement control is low. Add one clear movement action to create a new option."
+    ],
+    "formatted_feedback": "I noticed Low movement is recorded in this window. Add one clear movement action in similar moments. from 0.0 second video and this is my feedback: Low movement is recorded in this window. Add one clear movement action in similar moments. Maximum speed is low in this window. Add a short acceleration action in similar moments. Ball control percentage is low. Look for small check-ins to get a touch. Movement control is low. Add one clear movement action to create a new option. (control%: ball=0.0, field_adv=0.0, field_mid=0.0, field_deep=0.0, movement=0.0, pressure=0.0)",
+    "llm_feedback": {
+      "quantitative_summary": {
+        "ball_control": "0.0%",
+        "movement": "The player displayed no measurable distance covered or speed, indicating a lack of movement.",
+        "pressure_context": "The player was not involved in any possession activity, indicated by a ball control percentage of 0.0%."
+      },
+      "insights": [
+        {
+          "title": "Minimal Engagement in Match",
+          "what_happened": "The player had a total presence of 17.48 seconds on the field but demonstrated no ball control or movement.",
+          "why_it_matters": "The lack of active engagement in ball control and movement can significantly hinder team performance and individual development.",
+          "how_to_improve": [
+            "Increase participation in possession activities during training to enhance ball control.",
+            "Focus on fitness drills to improve overall movement speed and stamina.",
+            "Encourage tactical training to better recognize opportunities for engagement during matches."
+          ],
+          "technical_terms_used": [
+            "ball control",
+            "presence",
+            "movement"
+          ],
+          "evidence_used": {
+            "presence_total_s": "17.48",
+            "ball_control_pct": "0.0%"
+          }
+        }
+      ],
+      "action_plan": {
+        "focus": "Enhancing ball control and movement during game situations.",
+        "next_step": "Implement targeted drills to encourage ball receiving and short passing under pressure.",
+        "success_indicator": "Improvement in ball control percentage and distance movement metrics in the next matches."
+      }
+    }
+  }
+]
