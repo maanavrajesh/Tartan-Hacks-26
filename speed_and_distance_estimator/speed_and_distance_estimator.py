@@ -1,3 +1,5 @@
+"""Compute and render player speed and distance metrics."""
+
 import cv2
 import sys 
 sys.path.append('../')
@@ -5,10 +7,12 @@ from utils import measure_distance ,get_foot_position
 
 class SpeedAndDistance_Estimator():
     def __init__(self):
+        # Window size (frames) and frame rate for speed estimation.
         self.frame_window=5
         self.frame_rate=24
     
     def add_speed_and_distance_to_tracks(self,tracks):
+        # Compute rolling speed and total distance per tracked player.
         total_distance= {}
 
         for object, object_tracks in tracks.items():
@@ -48,6 +52,7 @@ class SpeedAndDistance_Estimator():
                         tracks[object][frame_num_batch][track_id]['distance'] = total_distance[object][track_id]
     
     def draw_speed_and_distance(self,frames,tracks):
+        # Overlay speed and distance values for each player.
         output_frames = []
         for frame_num, frame in enumerate(frames):
             for object, object_tracks in tracks.items():

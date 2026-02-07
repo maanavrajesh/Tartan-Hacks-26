@@ -1,3 +1,5 @@
+"""Assign players to teams using jersey color clustering."""
+
 from sklearn.cluster import KMeans
 
 class TeamAssigner:
@@ -6,6 +8,7 @@ class TeamAssigner:
         self.player_team_dict = {}
     
     def get_clustering_model(self,image):
+        # Fit KMeans on pixel colors for a given image region.
         # Reshape the image to 2D array
         image_2d = image.reshape(-1,3)
 
@@ -16,6 +19,7 @@ class TeamAssigner:
         return kmeans
 
     def get_player_color(self,frame,bbox):
+        # Estimate jersey color from the upper half of the player box.
         image = frame[int(bbox[1]):int(bbox[3]),int(bbox[0]):int(bbox[2])]
 
         top_half_image = image[0:int(image.shape[0]/2),:]
@@ -23,7 +27,7 @@ class TeamAssigner:
         # Get Clustering model
         kmeans = self.get_clustering_model(top_half_image)
 
-        # Get the cluster labels forr each pixel
+        # Get the cluster labels for each pixel
         labels = kmeans.labels_
 
         # Reshape the labels to the image shape
@@ -40,6 +44,7 @@ class TeamAssigner:
 
 
     def assign_team_color(self,frame, player_detections):
+        # Learn two dominant jersey colors from the first frame with players.
         
         player_colors = []
         for _, player_detection in player_detections.items():
@@ -57,6 +62,7 @@ class TeamAssigner:
 
 
     def get_player_team(self,frame,player_bbox,player_id):
+        # Cache team assignment per player to keep labels stable.
         if player_id in self.player_team_dict:
             return self.player_team_dict[player_id]
 
@@ -65,6 +71,7 @@ class TeamAssigner:
         team_id = self.kmeans.predict(player_color.reshape(1,-1))[0]
         team_id+=1
 
+        # Hardcoded exception kept from original logic.
         if player_id ==91:
             team_id=1
 

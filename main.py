@@ -1,3 +1,5 @@
+"""Run end-to-end football video analysis and render annotated output."""
+
 from utils import read_video, save_video
 from trackers import Tracker
 import cv2
@@ -11,6 +13,7 @@ from pathlib import Path
 import argparse
 
 def build_stub_paths(stubs_dir, video_path):
+    """Derive per-video stub paths for cached tracks and camera movement."""
     video_stem = Path(video_path).stem
     stubs_dir = Path(stubs_dir)
     stubs_dir.mkdir(parents=True, exist_ok=True)
@@ -20,6 +23,7 @@ def build_stub_paths(stubs_dir, video_path):
     )
 
 def main():
+    # Parse CLI args to keep input/output flexible without code edits.
     parser = argparse.ArgumentParser(description="Run football analysis on a video.")
     parser.add_argument("--video", default="input_videos/08fd33_4.mp4", help="Path to input video.")
     parser.add_argument("--output", default="output_videos/output_video.avi", help="Path to output video.")
@@ -40,10 +44,10 @@ def main():
     tracks = tracker.get_object_tracks(video_frames,
                                        read_from_stub=args.use_stubs,
                                        stub_path=str(tracks_stub_path))
-    # Get object positions 
+    # Add foot/center positions for downstream movement and transforms.
     tracker.add_position_to_tracks(tracks)
 
-    # camera movement estimator
+    # Estimate camera motion to stabilize player/ball trajectories.
     camera_movement_estimator = CameraMovementEstimator(video_frames[0])
     camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames,
                                                                                 read_from_stub=args.use_stubs,
@@ -51,18 +55,18 @@ def main():
     camera_movement_estimator.add_adjust_positions_to_tracks(tracks,camera_movement_per_frame)
 
 
-    # View Trasnformer
+    # Map image coordinates into a top-down pitch reference frame.
     view_transformer = ViewTransformer()
     view_transformer.add_transformed_position_to_tracks(tracks)
 
-    # Interpolate Ball Positions
+    # Interpolate ball positions across missed detections.
     tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
 
-    # Speed and distance estimator
+    # Estimate player speed and total distance.
     speed_and_distance_estimator = SpeedAndDistance_Estimator()
     speed_and_distance_estimator.add_speed_and_distance_to_tracks(tracks)
 
-    # Assign Player Teams
+    # Assign players to teams based on jersey color clustering.
     team_assigner = TeamAssigner()
     first_players_frame = next((i for i, players in enumerate(tracks['players']) if len(players) > 0), None)
     if first_players_frame is not None:
@@ -79,7 +83,7 @@ def main():
                 tracks['players'][frame_num][player_id]['team_color'] = team_assigner.team_colors[team]
 
     
-    # Assign Ball Aquisition
+    # Track ball possession and aggregate team control over time.
     player_assigner =PlayerBallAssigner()
     team_ball_control= []
     for frame_num, player_track in enumerate(tracks['players']):
@@ -97,7 +101,7 @@ def main():
     team_ball_control= np.array(team_ball_control)
 
 
-    # Draw output 
+    # Draw output annotations.
     ## Draw object Tracks
     output_video_frames = tracker.draw_annotations(video_frames, tracks,team_ball_control)
 

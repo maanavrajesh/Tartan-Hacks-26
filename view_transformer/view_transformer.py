@@ -1,8 +1,11 @@
+"""Perspective transform utilities for mapping to a top-down pitch view."""
+
 import numpy as np 
 import cv2
 
 class ViewTransformer():
     def __init__(self):
+        # Define pitch dimensions in meters and mapping points in pixels.
         court_width = 68
         court_length = 23.32
 
@@ -24,6 +27,7 @@ class ViewTransformer():
         self.persepctive_trasnformer = cv2.getPerspectiveTransform(self.pixel_vertices, self.target_vertices)
 
     def transform_point(self,point):
+        # Transform a single point if it lies inside the defined polygon.
         p = (int(point[0]),int(point[1]))
         is_inside = cv2.pointPolygonTest(self.pixel_vertices,p,False) >= 0 
         if not is_inside:
@@ -34,6 +38,7 @@ class ViewTransformer():
         return tranform_point.reshape(-1,2)
 
     def add_transformed_position_to_tracks(self,tracks):
+        # Add top-down transformed positions to each track where applicable.
         for object, object_tracks in tracks.items():
             for frame_num, track in enumerate(object_tracks):
                 for track_id, track_info in track.items():

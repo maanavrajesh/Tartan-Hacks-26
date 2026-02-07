@@ -1,6 +1,9 @@
+"""Lightweight video I/O helpers using OpenCV."""
+
 import cv2
 
 def read_video(video_path):
+    # Read all frames into memory for batch processing.
     cap = cv2.VideoCapture(video_path)
     frames = []
     while True:
@@ -11,6 +14,7 @@ def read_video(video_path):
     return frames
 
 def save_video(ouput_video_frames,output_video_path):
+    # Write frames to disk using a fixed FPS and codec.
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter(output_video_path, fourcc, 24, (ouput_video_frames[0].shape[1], ouput_video_frames[0].shape[0]))
     for frame in ouput_video_frames:

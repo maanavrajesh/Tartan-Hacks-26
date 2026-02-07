@@ -1,3 +1,5 @@
+"""Tracking and annotation utilities built on YOLO and ByteTrack."""
+
 from ultralytics import YOLO
 import supervision as sv
 import pickle
@@ -11,10 +13,12 @@ from utils import get_center_of_bbox, get_bbox_width, get_foot_position
 
 class Tracker:
     def __init__(self, model_path):
+        # Load detection model and tracker once for reuse across frames.
         self.model = YOLO(model_path) 
         self.tracker = sv.ByteTrack()
 
     def add_position_to_tracks(sekf,tracks):
+        # Compute a representative position (foot or center) for each track.
         for object, object_tracks in tracks.items():
             for frame_num, track in enumerate(object_tracks):
                 for track_id, track_info in track.items():
@@ -26,6 +30,7 @@ class Tracker:
                     tracks[object][frame_num][track_id]['position'] = position
 
     def interpolate_ball_positions(self,ball_positions):
+        # Fill missing ball boxes using linear interpolation over time.
         ball_positions = [x.get(1,{}).get('bbox',[]) for x in ball_positions]
         df_ball_positions = pd.DataFrame(ball_positions,columns=['x1','y1','x2','y2'])
 
@@ -38,6 +43,7 @@ class Tracker:
         return ball_positions
 
     def detect_frames(self, frames):
+        # Run batched inference for efficiency.
         batch_size=20 
         detections = [] 
         for i in range(0,len(frames),batch_size):
@@ -48,6 +54,7 @@ class Tracker:
     def get_object_tracks(self, frames, read_from_stub=False, stub_path=None):
         
         if read_from_stub and stub_path is not None and os.path.exists(stub_path):
+            # Load cached tracks if available.
             with open(stub_path,'rb') as f:
                 tracks = pickle.load(f)
             return tracks
@@ -90,6 +97,7 @@ class Tracker:
                 if cls_id == cls_names_inv['referee']:
                     tracks["referees"][frame_num][track_id] = {"bbox":bbox}
             
+            # Keep ball detections untracked (single ID).
             for frame_detection in detection_supervision:
                 bbox = frame_detection[0].tolist()
                 cls_id = frame_detection[3]
@@ -98,12 +106,14 @@ class Tracker:
                     tracks["ball"][frame_num][1] = {"bbox":bbox}
 
         if stub_path is not None:
+            # Persist tracks for reuse on the same video.
             with open(stub_path,'wb') as f:
                 pickle.dump(tracks,f)
 
         return tracks
     
     def draw_ellipse(self,frame,bbox,color,track_id=None):
+        # Visualize a player/referee using an ellipse and optional ID tag.
         y2 = int(bbox[3])
         x_center, _ = get_center_of_bbox(bbox)
         width = get_bbox_width(bbox)
@@ -151,6 +161,7 @@ class Tracker:
         return frame
 
     def draw_traingle(self,frame,bbox,color):
+        # Draw a small triangle marker (e.g., ball or possession).
         y= int(bbox[1])
         x,_ = get_center_of_bbox(bbox)
 
@@ -191,6 +202,7 @@ class Tracker:
         return frame
 
     def draw_annotations(self,video_frames, tracks,team_ball_control):
+        # Render all overlays onto each frame.
         output_video_frames= []
         for frame_num, frame in enumerate(video_frames):
             frame = frame.copy()

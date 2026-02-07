@@ -1,3 +1,5 @@
+"""Estimate camera motion between frames using optical flow."""
+
 import pickle
 import cv2
 import numpy as np
@@ -8,6 +10,7 @@ from utils import measure_distance,measure_xy_distance
 
 class CameraMovementEstimator():
     def __init__(self,frame):
+        # Threshold for deciding when movement is significant.
         self.minimum_distance = 5
 
         self.lk_params = dict(
@@ -30,6 +33,7 @@ class CameraMovementEstimator():
         )
 
     def add_adjust_positions_to_tracks(self,tracks, camera_movement_per_frame):
+        # Adjust object positions by removing estimated camera motion.
         for object, object_tracks in tracks.items():
             for frame_num, track in enumerate(object_tracks):
                 for track_id, track_info in track.items():
@@ -58,6 +62,7 @@ class CameraMovementEstimator():
             max_distance = 0
             camera_movement_x, camera_movement_y = 0,0
 
+            # Use the strongest motion vector as camera displacement.
             for i, (new,old) in enumerate(zip(new_features,old_features)):
                 new_features_point = new.ravel()
                 old_features_point = old.ravel()
@@ -74,12 +79,14 @@ class CameraMovementEstimator():
             old_gray = frame_gray.copy()
         
         if stub_path is not None:
+            # Cache camera motion for later runs on the same video.
             with open(stub_path,'wb') as f:
                 pickle.dump(camera_movement,f)
 
         return camera_movement
     
     def draw_camera_movement(self,frames, camera_movement_per_frame):
+        # Overlay camera motion vectors on frames.
         output_frames=[]
 
         for frame_num, frame in enumerate(frames):
