@@ -260,10 +260,11 @@ function buildLegSilhouette() {
     emissiveIntensity: 0.25,
     transparent: true,
     opacity: 1,
+    flatShading: true,
   });
 
-  // Helper
-  const capsule = (rTop, rBot, h) => new THREE.CylinderGeometry(rTop, rBot, h, 12);
+  // 2.5D leg: thin boxes to read as 2D silhouette with depth cues
+  const DEPTH = 0.08;
 
   // Hip pivot (top of leg)
   const thighPivot = new THREE.Group();
@@ -271,7 +272,7 @@ function buildLegSilhouette() {
   leg.add(thighPivot);
 
   // Thigh
-  const thigh = new THREE.Mesh(capsule(0.18, 0.14, 1.6), mat);
+  const thigh = new THREE.Mesh(new THREE.BoxGeometry(0.45, 1.6, DEPTH), mat);
   thigh.position.y = -0.8;
   thighPivot.add(thigh);
 
@@ -281,7 +282,7 @@ function buildLegSilhouette() {
   thighPivot.add(calfPivot);
 
   // Calf
-  const calf = new THREE.Mesh(capsule(0.14, 0.12, 1.4), mat);
+  const calf = new THREE.Mesh(new THREE.BoxGeometry(0.38, 1.4, DEPTH), mat);
   calf.position.y = -0.7;
   calfPivot.add(calf);
 
@@ -291,8 +292,8 @@ function buildLegSilhouette() {
   calfPivot.add(footPivot);
 
   // Foot
-  const foot = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.12, 0.65), mat);
-  foot.position.set(0, -0.08, 0.18);
+  const foot = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.14, DEPTH), mat);
+  foot.position.set(0.05, -0.08, 0.12);
   footPivot.add(foot);
 
   return { leg, thighPivot, calfPivot, footPivot, material: mat };
@@ -300,8 +301,8 @@ function buildLegSilhouette() {
 
 const leg = buildLegSilhouette();
 // Position the leg in the upper half and let it extend beyond the top of the frame
-leg.leg.position.set(-10, 1.8, 2);
-leg.leg.scale.set(1.1, 1.1, 1.1);
+leg.leg.position.set(-10, 3.0, 2);
+leg.leg.scale.set(1.6, 1.6, 1.6);
 leg.leg.rotation.y = 0.3;
 leg.leg.visible = false;
 scene.add(leg.leg);
