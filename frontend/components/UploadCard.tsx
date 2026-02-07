@@ -207,9 +207,9 @@ export function UploadCard({
             setProcessingStatus('complete')
             await new Promise((resolve) => setTimeout(resolve, 1000)) // Brief delay to show completion
 
-            // Navigate to viewer
+            // Navigate to report
             onUploadComplete?.(videoId)
-            router.push(`/viewer/${videoId}`)
+            router.push(`/report/${videoId}`)
             return
           }
 

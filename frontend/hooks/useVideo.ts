@@ -54,4 +54,13 @@ export const videoApi = {
   getDownloadUrl(videoId: string): string {
     return `${API_BASE}/api/download/${videoId}`
   },
+
+  async getFeedback(videoId: string) {
+    const res = await fetch(`${API_BASE}/api/feedback/${videoId}`)
+    if (!res.ok) {
+      const data = await res.json()
+      throw new Error(data.error || 'Feedback not available')
+    }
+    return res.json()
+  },
 }

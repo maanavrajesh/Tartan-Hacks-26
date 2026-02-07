@@ -1,5 +1,14 @@
-*__pycahce__*
+*__pycache__*
 *.pyc
 input_videos/*.mp4
 output_videos/*.avi
 models/best.pt
+backend/models/*.pt
+backend/output_videos/*
+output_videos/*
+uploads/*
+.claude/*
+frontend-new/.next/
+frontend-new/node_modules/
+frontend/.next/
+frontend/node_modules/
