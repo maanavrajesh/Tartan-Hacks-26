@@ -146,6 +146,61 @@ export interface SelectedEvent {
   event: VideoEvent
 }
 
+// Player Feedback Types (from backend player_feedback pipeline)
+export interface TimeWindow {
+  t0: number
+  t1: number
+}
+
+export interface LLMInsight {
+  title: string
+  what_happened: string
+  why_it_matters: string
+  how_to_improve: string[]
+  technical_terms_used: string[]
+  evidence_used: Record<string, string>
+}
+
+export interface LLMFeedback {
+  quantitative_summary: {
+    ball_control: string
+    movement: string
+    pressure_context: string
+  }
+  insights: LLMInsight[]
+  action_plan: {
+    focus: string
+    next_step: string
+    success_indicator: string
+  }
+}
+
+export interface PlayerFeedback {
+  player_id: number
+  team: number | null
+  frames_present: number
+  possession_frames: number
+  possession_pct_of_present: number
+  possession_pct_of_total: number
+  distance_m: number
+  avg_speed_kmh: number
+  max_speed_kmh: number
+  top_speed_time_s: number | null
+  possession_windows_s: TimeWindow[]
+  presence_windows_s: TimeWindow[]
+  presence_total_s: number
+  position_rank_pct: number | null
+  position_role: 'advanced' | 'mid' | 'deep' | null
+  ball_control_pct: number
+  field_control_adv_pct: number
+  field_control_mid_pct: number
+  field_control_deep_pct: number
+  movement_control_pct: number
+  pressure_control_pct: number
+  feedback: string[]
+  llm_feedback: LLMFeedback | null
+}
+
 // Color mapping for events
 export const EVENT_COLORS: Record<EventType, string> = {
   shot_attempt: '#ef4444',

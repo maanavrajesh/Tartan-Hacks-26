@@ -5,8 +5,8 @@ import './globals.css'
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Soccer Film Intelligence',
-  description: 'Turn soccer match film into tactical intelligence for coaches and analysts',
+  title: 'Vision XI',
+  description: 'Vision XI turns match film into tactical intelligence for coaches and analysts',
 }
 
 export default function RootLayout({

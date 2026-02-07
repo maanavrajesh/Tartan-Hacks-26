@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { useVideo, videoApi } from '@/hooks/useVideo'
 import { formatDuration } from '@/lib/utils'
+import type { PlayerFeedback } from '@/lib/types'
 
 export default function ReportPage() {
   const params = useParams()
@@ -41,6 +42,8 @@ export default function ReportPage() {
   }, [artifacts.predictions.topRiskMoments])
 
   const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined)
+  const [players, setPlayers] = useState<PlayerFeedback[]>([])
+  const [playerError, setPlayerError] = useState<string | null>(null)
 
   const overlaySettings = useMemo(
     () => ({
@@ -55,6 +58,29 @@ export default function ReportPage() {
 
   useEffect(() => {
     setVideoSrc(videoApi.getVideoUrl(videoId))
+  }, [videoId])
+
+  useEffect(() => {
+    let cancelled = false
+    async function loadPlayers() {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/feedback/${videoId}`)
+        if (!res.ok) {
+          const data = await res.json()
+          throw new Error(data.error || 'Failed to load player feedback')
+        }
+        const data = await res.json()
+        if (!cancelled) {
+          setPlayers(data)
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setPlayerError(err instanceof Error ? err.message : 'Failed to load player feedback')
+        }
+      }
+    }
+    loadPlayers()
+    return () => { cancelled = true }
   }, [videoId])
 
   const handleViewEvidence = useCallback(
@@ -342,16 +368,145 @@ export default function ReportPage() {
             </div>
           </div>
         </Card>
+
+        {/* Player Dashboards */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-xl font-semibold text-text-primary">
+                Player Dashboards
+              </h2>
+              <p className="text-sm text-text-secondary">
+                Click a player to open individual analytics.
+              </p>
+            </div>
+            <Link href={`/player/${videoId}`}>
+              <Button variant="secondary" size="sm">View All Players</Button>
+            </Link>
+          </div>
+          <Card padding="lg">
+            {playerError && (
+              <p className="text-sm text-event-shot">{playerError}</p>
+            )}
+            {!playerError && players.length === 0 && (
+              <p className="text-sm text-text-muted">
+                Player analytics will appear once feedback is ready.
+              </p>
+            )}
+            {!playerError && players.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {players.map((player) => (
+                  <Link
+                    key={player.player_id}
+                    href={`/player/${videoId}?player=${player.player_id}`}
+                    className="p-3 rounded-lg bg-bg-secondary hover:bg-bg-card-hover transition-colors"
+                  >
+                    <p className="text-sm font-medium text-text-primary">
+                      Player #{player.player_id}
+                    </p>
+                    <p className="text-xs text-text-muted">Team {player.team ?? 'N/A'}</p>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </Card>
+        </section>
+
+        {/* Team Analytics */}
+        <section>
+          <h2 className="text-xl font-semibold text-text-primary mb-4">
+            Team Analytics
+          </h2>
+          <Card padding="lg">
+            {players.length === 0 ? (
+              <p className="text-sm text-text-muted">
+                Team analytics will appear once player feedback is ready.
+              </p>
+            ) : (
+              <TeamAnalytics players={players} />
+            )}
+          </Card>
+        </section>
       </main>
 
       {/* Footer */}
       <footer className="border-t border-border py-6 mt-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-text-muted">
           <p>
-            Soccer Film Intelligence | Built for NexHacks 2026
+            Vision XI | Match Intelligence
           </p>
         </div>
       </footer>
+    </div>
+  )
+}
+
+function TeamAnalytics({ players }: { players: PlayerFeedback[] }) {
+  const teams = players.reduce(
+    (acc, p) => {
+      const key = p.team === 2 ? 'team2' : 'team1'
+      acc[key].push(p)
+      return acc
+    },
+    { team1: [] as PlayerFeedback[], team2: [] as PlayerFeedback[] }
+  )
+
+  const buildStats = (items: PlayerFeedback[]) => {
+    if (items.length === 0) return null
+    const avg = (vals: number[]) => vals.reduce((a, b) => a + b, 0) / vals.length
+    return [
+      { label: 'Avg Speed', value: avg(items.map((p) => p.avg_speed_kmh)), unit: 'km/h', max: 25 },
+      { label: 'Max Speed', value: Math.max(...items.map((p) => p.max_speed_kmh)), unit: 'km/h', max: 35 },
+      { label: 'Distance', value: avg(items.map((p) => p.distance_m)), unit: 'm', max: 1200 },
+      { label: 'Ball Control', value: avg(items.map((p) => p.ball_control_pct)), unit: '%', max: 100 },
+      { label: 'Movement', value: avg(items.map((p) => p.movement_control_pct)), unit: '%', max: 100 },
+      { label: 'Pressure', value: avg(items.map((p) => p.pressure_control_pct)), unit: '%', max: 100 },
+    ]
+  }
+
+  const team1Stats = buildStats(teams.team1)
+  const team2Stats = buildStats(teams.team2)
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <TeamCard title="Team One" stats={team1Stats} />
+      <TeamCard title="Team Two" stats={team2Stats} />
+    </div>
+  )
+}
+
+function TeamCard({
+  title,
+  stats,
+}: {
+  title: string
+  stats: Array<{ label: string; value: number; unit: string; max: number }> | null
+}) {
+  if (!stats) {
+    return (
+      <div className="p-4 rounded-lg bg-bg-secondary">
+        <p className="text-sm text-text-muted">{title} analytics not available.</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="p-4 rounded-lg bg-bg-secondary space-y-3">
+      <h3 className="text-sm font-semibold text-text-primary">{title}</h3>
+      {stats.map((stat) => {
+        const pct = Math.min(100, (stat.value / stat.max) * 100)
+        return (
+          <div key={stat.label}>
+            <div className="flex items-center justify-between text-xs text-text-muted mb-1">
+              <span>{stat.label}</span>
+              <span>{stat.value.toFixed(1)} {stat.unit}</span>
+            </div>
+            <div className="h-2 rounded-full bg-bg-card overflow-hidden">
+              <div className="h-full bg-accent-blue" style={{ width: `${pct}%` }} />
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

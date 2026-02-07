@@ -51,10 +51,10 @@ export default function UploadPage() {
           <div className="space-y-8">
             <div className="space-y-4">
               <p className="inline-flex items-center gap-2 rounded-full border border-border-light/60 bg-bg-secondary px-3 py-1 text-xs uppercase tracking-[0.24em] text-text-muted">
-                Soccer Film Intelligence
+                Vision XI
               </p>
               <h1 className="text-3xl font-semibold leading-tight text-text-primary md:text-4xl">
-                Turn match footage into tactical clarity in minutes.
+                Vision XI turns match footage into tactical clarity in minutes.
               </h1>
               <p className="text-base text-text-secondary">
                 Upload a full match, highlight, or training segment. We map pressure, shape, and

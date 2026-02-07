@@ -264,7 +264,7 @@ export function UploadCard({
         {/* Header */}
         <div className="text-center">
           <h1 className="text-2xl font-bold text-text-primary mb-2">
-            Turn Soccer Match Film Into Tactical Intelligence
+            Vision XI: Tactical Intelligence From Match Film
           </h1>
           <p className="text-text-secondary">
             Upload your match footage for instant soccer analysis

@@ -131,6 +131,32 @@ export default function ViewerPage() {
             <Button
               variant="secondary"
               size="sm"
+              onClick={() => router.push(`/player/${videoId}`)}
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M16 14a4 4 0 10-8 0v6h8v-6z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 12a4 4 0 100-8 4 4 0 000 8z"
+                />
+              </svg>
+              Player Dashboard
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
               onClick={() => router.push(`/report/${videoId}`)}
             >
               <svg
