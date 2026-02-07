@@ -17,16 +17,16 @@ camera.position.set(0, 2, 10);
 camera.lookAt(0, 1, 0);
 
 // ─── COLORS ─────────────────────────────────────────────────
-const OCEAN      = new THREE.Color(0x1a8fd1);
-const DEEP_PURPLE = new THREE.Color(0x6a1b9a);
-const DARK_VIOLET = new THREE.Color(0x4a148c);
-const NAVY_BLUE  = new THREE.Color(0x003f88);
-const DARK_TEAL  = new THREE.Color(0x005f73);
+const ELECTRIC_BLUE = new THREE.Color(0x3b82f6);
+const NEON_PURPLE   = new THREE.Color(0x7c3aed);
+const HOT_MAGENTA   = new THREE.Color(0xd946ef);
+const DEEP_VIOLET   = new THREE.Color(0x4c1d95);
+const MIDNIGHT      = new THREE.Color(0x0f172a);
 
 // ~50% darker blues/purples, ~25% ocean/cyan, ~25% deep purples
 const PALETTE = [
-  OCEAN, DEEP_PURPLE, NAVY_BLUE, DARK_VIOLET,
-  DARK_TEAL, DEEP_PURPLE, NAVY_BLUE, DARK_VIOLET,
+  ELECTRIC_BLUE, NEON_PURPLE, HOT_MAGENTA, DEEP_VIOLET,
+  ELECTRIC_BLUE, NEON_PURPLE, MIDNIGHT, DEEP_VIOLET,
 ];
 
 // ─── LIGHTING ───────────────────────────────────────────────
@@ -220,7 +220,8 @@ function buildSoccerBall() {
         opacity: 0.9,
         attenuationColor: midColor.clone().lerp(new THREE.Color(0xffffff), 0.5),
         attenuationDistance: 2.0,
-        emissive: midColor.clone().multiplyScalar(0.15),
+        emissive: midColor.clone().multiplyScalar(0.35),
+        emissiveIntensity: 0.8,
       });
 
       const mesh = new THREE.Mesh(geo, mat);
