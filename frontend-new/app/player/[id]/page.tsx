@@ -69,6 +69,18 @@ export default function PlayerDashboardPage() {
     ]
   }, [selected])
 
+  const keyMoments = useMemo(() => {
+    if (!selected) return []
+    const moments: Array<{ label: string; time: number | null }> = []
+    if (selected.top_speed_time_s !== null) {
+      moments.push({ label: 'Top speed burst', time: selected.top_speed_time_s })
+    }
+    selected.possession_windows_s.slice(0, 3).forEach((window, idx) => {
+      moments.push({ label: `Possession window ${idx + 1}`, time: window.t0 })
+    })
+    return moments
+  }, [selected])
+
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary">
       <header className="border-b border-border bg-bg-secondary/50 backdrop-blur-sm sticky top-0 z-40">
@@ -183,6 +195,29 @@ export default function PlayerDashboardPage() {
                           </li>
                         ))}
                       </ul>
+                    </Card>
+                  )}
+
+                  {keyMoments.length > 0 && (
+                    <Card padding="md">
+                      <h3 className="text-sm font-semibold text-text-primary mb-3">Key Moments</h3>
+                      <div className="space-y-2">
+                        {keyMoments.map((moment, idx) => (
+                          <div key={idx} className="flex items-center justify-between text-sm">
+                            <span className="text-text-secondary">{moment.label}</span>
+                            {moment.time !== null ? (
+                              <Link
+                                href={`/viewer/${videoId}?t=${moment.time}`}
+                                className="text-accent-blue hover:underline text-xs"
+                              >
+                                {moment.time.toFixed(2)}s
+                              </Link>
+                            ) : (
+                              <span className="text-xs text-text-muted">N/A</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </Card>
                   )}
                 </>

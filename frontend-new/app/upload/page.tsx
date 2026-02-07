@@ -6,7 +6,7 @@ import { MatchHistory, ProjectionCards, SoccerHero } from '@/components/landing'
 import { BackgroundPaths } from '@/components/ui/background-paths'
 import type { ProcessingStatus } from '@/lib/types'
 
-export default function HomePage() {
+export default function UploadPage() {
   const [heroState, setHeroState] = useState<'idle' | 'uploading' | 'analyzing' | 'complete'>('idle')
 
   const handleStatusChange = useCallback((status: ProcessingStatus) => {
@@ -30,11 +30,9 @@ export default function HomePage() {
       <div className="fixed inset-0 opacity-50 pointer-events-none">
         <BackgroundPaths />
       </div>
-      {/* Atmospheric background */}
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.12),_transparent_55%)] pointer-events-none" />
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_20%_40%,_rgba(59,130,246,0.08),_transparent_45%)] pointer-events-none" />
 
-      {/* Subtle grid pattern */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.02]"
         style={{
@@ -44,10 +42,8 @@ export default function HomePage() {
         }}
       />
 
-      {/* Main content */}
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-12 lg:py-16">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:gap-12">
-          {/* Left panel */}
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:gap-12">
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-3 rounded-full border border-border-light/60 bg-bg-secondary px-4 py-2">
@@ -56,49 +52,27 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-[0.26em] text-text-muted">Vision XI</p>
-                  <p className="text-sm text-text-secondary">Match Intelligence Platform</p>
+                  <p className="text-sm text-text-secondary">Upload Studio</p>
                 </div>
               </div>
-              <h1 className="text-4xl font-semibold leading-tight text-text-primary md:text-5xl">
-                Vision XI turns match footage into actionable tactical clarity.
+              <h1 className="text-3xl font-semibold leading-tight text-text-primary md:text-4xl">
+                Upload match film to start the Vision XI analysis.
               </h1>
               <p className="text-base text-text-secondary">
-                Upload a full match, highlight, or training segment. We map pressure, shape,
-                and possession to reveal repeatable coaching patterns.
+                We process the film and build team + player dashboards with
+                tactical, possession, and movement intelligence.
               </p>
-              <div className="flex flex-wrap gap-3 text-xs text-text-muted">
-                <span className="rounded-full border border-border bg-bg-secondary px-3 py-1">
-                  Shape integrity & rest defense
-                </span>
-                <span className="rounded-full border border-border bg-bg-secondary px-3 py-1">
-                  Press triggers & transition control
-                </span>
-                <span className="rounded-full border border-border bg-bg-secondary px-3 py-1">
-                  Player & team insight dashboards
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <a
-                  href="/upload"
-                  className="inline-flex items-center gap-2 rounded-lg bg-accent-blue px-5 py-3 text-sm font-semibold text-white hover:bg-accent-blue/90 transition-colors"
-                >
-                  Upload Match Film
-                </a>
-                <a
-                  href="/upload"
-                  className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-3 text-sm font-semibold text-text-primary hover:bg-bg-card-hover transition-colors"
-                >
-                  Try Demo Flow
-                </a>
-              </div>
             </div>
-            <ProjectionCards />
+            <UploadCard
+              onStatusChange={handleStatusChange}
+              onFileStateChange={handleFileStateChange}
+            />
           </div>
 
-          {/* Right panel */}
           <div className="space-y-8">
             <SoccerHero state={heroState} />
             <MatchHistory />
+            <ProjectionCards />
           </div>
         </div>
       </div>

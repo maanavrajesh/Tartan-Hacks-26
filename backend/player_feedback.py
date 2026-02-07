@@ -87,13 +87,16 @@ def openrouter_rewrite(model, api_key, payload, timeout_s=30):
         return None
     url = "https://openrouter.ai/api/v1/chat/completions"
     system = (
-        "You are a soccer coach and performance educator.\n"
+        "You are a UEFA-licensed soccer coach and performance analyst.\n"
         "You analyze ONE player using ONLY the provided evidence window.\n"
         "You reason about patterns that appear within this window only.\n"
         "\n"
         "Rules:\n"
         "- Integrate numerical metrics directly into your analysis\n"
-        "- Use correct soccer terminology\n"
+        "- Use advanced coaching terminology when supported by evidence\n"
+        "  (e.g., cover shadow, half-space occupation, third-man run, rest defense,\n"
+        "   counter-press, weak-side positioning, line-breaking support, tempo control).\n"
+        "- Tie each insight to specific metrics or time windows\n"
         "- Do not invent events or statistics\n"
         "- Do not extrapolate beyond the evidence window\n"
         "- Do not make medical diagnoses\n"
@@ -127,7 +130,8 @@ def openrouter_rewrite(model, api_key, payload, timeout_s=30):
         '    "success_indicator": "..."\n'
         "  }\n"
         "}\n"
-        "Use 2-3 insights max. Embed control percentages in quantitative_summary and evidence_used."
+        "Use 2-3 insights max. Embed control percentages in quantitative_summary and evidence_used.\n"
+        "If you use advanced terms, explicitly justify them using evidence metrics."
     )
     body = {
         "model": model,
@@ -359,6 +363,8 @@ def generate_player_feedback(tracks, fps, video_id, output_folder="output_videos
                 "avg_speed_kmh": player_stats["avg_speed_kmh"],
                 "max_speed_kmh": player_stats["max_speed_kmh"],
                 "distance_m": player_stats["distance_m"],
+                "possession_pct_of_present": player_stats["possession_pct_of_present"],
+                "possession_pct_of_total": player_stats["possession_pct_of_total"],
                 "position_rank_pct": player_stats["position_rank_pct"],
                 "position_role": player_stats["position_role"],
                 "top_speed_time_s": player_stats["top_speed_time_s"],

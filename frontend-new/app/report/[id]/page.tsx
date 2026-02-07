@@ -158,7 +158,7 @@ export default function ReportPage() {
             </Link>
             <div>
               <h1 className="text-text-primary font-semibold">
-                Match Analysis Report
+                Vision XI Match Report
               </h1>
               <p className="text-xs text-text-muted">
                 {artifacts.meta.filename}

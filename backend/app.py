@@ -177,6 +177,157 @@ def _build_insights_from_feedback(feedback):
     return insights
 
 
+def _build_events_and_risk(tracks, fps, frame_shape, team_ball_control):
+    height, width = frame_shape[:2]
+    if width <= 0 or height <= 0 or fps <= 0:
+        return [], {"riskScores": [], "topRiskMoments": []}
+
+    def clamp01(value):
+        return max(0.0, min(1.0, value))
+
+    def ball_position(frame_idx):
+        ball_frame = tracks.get("ball", [])[frame_idx]
+        if 1 not in ball_frame:
+            return None
+        bbox = ball_frame[1].get("bbox")
+        if not bbox:
+            return None
+        x1, y1, x2, y2 = bbox
+        return (clamp01(((x1 + x2) / 2) / width), clamp01(((y1 + y2) / 2) / height))
+
+    def player_positions(frame_idx, team=None):
+        positions = []
+        for pid, pdata in tracks.get("players", [])[frame_idx].items():
+            if team is not None and pdata.get("team") != team:
+                continue
+            bbox = pdata.get("bbox")
+            if not bbox:
+                continue
+            x1, y1, x2, y2 = bbox
+            positions.append({
+                "id": f"p_{pid}",
+                "x": clamp01(((x1 + x2) / 2) / width),
+                "y": clamp01(((y1 + y2) / 2) / height),
+            })
+        return positions
+
+    def zone_from_x(x):
+        if x < 0.33:
+            return "defensive_third"
+        if x < 0.66:
+            return "midfield"
+        return "final_third"
+
+    events = []
+    last_attack_entry = -999
+    last_press = -999
+    last_turnover = -999
+    last_dead = -999
+
+    risk_scores = []
+
+    # Build per-second risk signal
+    step = max(int(fps), 1)
+    for frame_idx in range(0, len(tracks.get("players", [])), step):
+        t = round(frame_idx / fps, 2)
+        ball_pos = ball_position(frame_idx)
+        risk = 0.15
+        factors = []
+        if ball_pos:
+            x, y = ball_pos
+            if x > 0.66:
+                risk += 0.35
+                factors.append("final_third_entry")
+            if x > 0.8:
+                risk += 0.2
+                factors.append("penalty_area_pressure")
+            if 0.33 < x < 0.66:
+                risk += 0.1
+                factors.append("midfield_transition")
+        team_in_control = team_ball_control[frame_idx] if frame_idx < len(team_ball_control) else 0
+        if team_in_control == 0:
+            risk += 0.05
+            factors.append("loose_ball")
+
+        risk = clamp01(risk)
+        risk_scores.append({"timestamp": t, "score": round(risk, 2), "factors": factors})
+
+    # Events based on actual movement + possession
+    for frame_idx in range(0, len(tracks.get("players", [])), 3):
+        t = round(frame_idx / fps, 2)
+        ball_pos = ball_position(frame_idx)
+        team_in_control = team_ball_control[frame_idx] if frame_idx < len(team_ball_control) else 0
+        prev_team = team_ball_control[frame_idx - 1] if frame_idx > 0 and frame_idx - 1 < len(team_ball_control) else team_in_control
+
+        # Turnover
+        if prev_team != team_in_control and team_in_control != 0 and (t - last_turnover) > 6:
+            zone = zone_from_x(ball_pos[0]) if ball_pos else "midfield"
+            events.append({
+                "id": f"evt_turnover_{frame_idx}",
+                "type": "turnover",
+                "timestamp": t,
+                "confidence": 0.72,
+                "zone": zone,
+                "description": "Possession changed between teams.",
+            })
+            last_turnover = t
+
+        # Attack entry
+        if ball_pos and ball_pos[0] > 0.66 and (t - last_attack_entry) > 8:
+            events.append({
+                "id": f"evt_attack_{frame_idx}",
+                "type": "attack_entry",
+                "timestamp": t,
+                "confidence": 0.78,
+                "zone": "final_third",
+                "description": "Ball progressed into the final third.",
+            })
+            last_attack_entry = t
+
+        # Press moment: 3+ opponents within 8% of field width to ball
+        if ball_pos and (t - last_press) > 8:
+            opponents = player_positions(frame_idx, team=2 if team_in_control == 1 else 1)
+            close = 0
+            for p in opponents:
+                if abs(p["x"] - ball_pos[0]) < 0.08 and abs(p["y"] - ball_pos[1]) < 0.08:
+                    close += 1
+            if close >= 3:
+                events.append({
+                    "id": f"evt_press_{frame_idx}",
+                    "type": "press_moment",
+                    "timestamp": t,
+                    "confidence": 0.76,
+                    "zone": zone_from_x(ball_pos[0]),
+                    "description": "Opponent pressure cluster detected around the ball.",
+                })
+                last_press = t
+
+        # Dead zone: no events + low movement window
+        if (t - last_dead) > 20:
+            events.append({
+                "id": f"evt_dead_{frame_idx}",
+                "type": "dead_zone",
+                "timestamp": t,
+                "endTimestamp": round(t + 6, 2),
+                "confidence": 0.6,
+                "zone": ball_pos and zone_from_x(ball_pos[0]) or "midfield",
+                "description": "Low intensity sequence detected.",
+            })
+            last_dead = t
+
+    # Top risk moments from risk_scores
+    top = sorted(risk_scores, key=lambda x: x["score"], reverse=True)[:5]
+    top_moments = []
+    for item in top:
+        top_moments.append({
+            "timestamp": item["timestamp"],
+            "score": item["score"],
+            "description": "Model-assisted risk spike.",
+        })
+
+    return events, {"riskScores": risk_scores, "topRiskMoments": top_moments}
+
+
 def run_pipeline(video_id, input_path, output_path):
     """Run the full analysis pipeline in a background thread."""
     try:
@@ -298,6 +449,9 @@ def run_pipeline(video_id, input_path, output_path):
             frame_shape = video_frames[0].shape if video_frames else (0, 0, 0)
             sample_step = max(int(fps / 5), 1)
             ui_tracks = _build_tracks_for_ui(tracks, frame_shape, fps, sample_step=sample_step)
+            events, predictions = _build_events_and_risk(
+                tracks, fps, frame_shape, team_ball_control
+            )
 
             duration_s = round(len(video_frames) / fps, 2) if fps else 0
             meta = {
@@ -314,9 +468,9 @@ def run_pipeline(video_id, input_path, output_path):
 
             artifacts = {
                 "meta": meta,
-                "events": [],
+                "events": events,
                 "metrics": _build_metrics_from_feedback(feedback),
-                "predictions": {"riskScores": [], "topRiskMoments": []},
+                "predictions": predictions,
                 "insights": _build_insights_from_feedback(feedback),
                 "tracks": ui_tracks,
             }

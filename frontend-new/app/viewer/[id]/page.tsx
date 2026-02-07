@@ -117,10 +117,10 @@ export default function ViewerPage() {
             </Link>
             <div>
               <h1 className="text-text-primary font-semibold">
-                {artifacts.meta.filename}
+                Vision XI
               </h1>
               <p className="text-xs text-text-muted">
-                {artifacts.meta.sport.charAt(0).toUpperCase() +
+                {artifacts.meta.filename} • {artifacts.meta.sport.charAt(0).toUpperCase() +
                   artifacts.meta.sport.slice(1)}{' '}
                 Analysis
               </p>
